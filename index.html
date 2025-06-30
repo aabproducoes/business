@@ -1,274 +1,312 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nome da Empresa — 20 anos de resultados</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nome da Empresa — 20 anos impulsionando negócios</title>
 
-  <!--  ✅  PALETA / TIPOGRAFIA  -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --primary: #0077ff;
-      --primary-light: #4799ff;
-      --bg: #fdfdfd;
-      --text: #1a1a1a;
-      --muted: #666;
-      --section-padding: 5rem 1.2rem;
-      --max-width: 1200px;
-      --radius: .75rem;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: "Inter", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      scroll-behavior: smooth;
-    }
-    h1, h2, h3 { font-weight: 700; line-height: 1.25; }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; border-radius: var(--radius); }
-    /* ----------  NAVBAR  ---------- */
-    header {
-      position: fixed; inset: 0 0 auto 0; height: 72px; z-index: 999;
-      background: rgba(255,255,255,.85); backdrop-filter: blur(8px);
-      box-shadow: 0 1px 4px rgba(0,0,0,.06);
-    }
-    nav { max-width: var(--max-width); margin: 0 auto; height: 100%;
-          display: flex; align-items: center; justify-content: space-between; padding: 0 1rem;}
-    .brand { font-size: 1.2rem; font-weight: 700; color: var(--primary); letter-spacing: .5px; }
-    ul.nav-links { list-style: none; display: flex; gap: 1.5rem; }
-    ul.nav-links a { font-weight: 600; transition: color .2s; }
-    ul.nav-links a:hover { color: var(--primary); }
-    /* ----------  SECTIONS  ---------- */
-    section { padding: var(--section-padding); }
-    .container { max-width: var(--max-width); margin-inline: auto; }
-    /* Hero */
-    #hero { display: flex; flex-direction: column; align-items: center; justify-content: center;
-            min-height: 100vh; text-align: center; background: linear-gradient(135deg,#e9f3ff 0%,#ffffff 100%); }
-    #hero h1 { font-size: clamp(2rem,5vw,3.2rem); margin-bottom: 1rem; }
-    #hero p { font-size: 1.125rem; max-width: 600px; margin-bottom: 2rem; color: var(--muted); }
-    .cta-btn { display: inline-block; background: var(--primary); color: #fff;
-               padding: .9rem 1.8rem; border-radius: var(--radius); font-weight: 600;
-               transition: background .25s; }
-    .cta-btn:hover { background: var(--primary-light); }
-    .badge { background: var(--primary); color: #fff; padding: .4rem .8rem;
-             border-radius: 999px; font-size: .875rem; margin-bottom: 1rem; }
-    /* Services */
-    .grid { display: grid; gap: 2rem; }
-    #services .grid { grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); }
-    .service-card { background: #fff; padding: 2rem; border-radius: var(--radius);
-                    box-shadow: 0 4px 12px rgba(0,0,0,.04); transition: transform .2s; }
-    .service-card:hover { transform: translateY(-4px); }
-    .service-card h3 { margin-bottom: .5rem; }
-    .service-card p { color: var(--muted); font-size: .95rem; }
-    /* Cases */
-    #cases .grid { grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); }
-    .case { display: flex; flex-direction: column; gap: 1rem; }
-    .case h4 { font-size: 1.1rem; }
-    .case span { color: var(--muted); font-size: .9rem; }
-    /* About */
-    .timeline { border-left: 3px solid var(--primary); padding-left: 2rem; position: relative; }
-    .timeline::before { content: ""; position: absolute; left: -9px; top: 0; bottom: 0; width: 3px; background: var(--primary); }
-    .milestone { margin-bottom: 1.8rem; position: relative; }
-    .milestone::before { content: ""; position: absolute; left: -17px; top: 3px; width: 12px; height: 12px;
-                         background: var(--primary); border-radius: 50%; }
-    .milestone span { font-size: .85rem; color: var(--muted); }
-    /* Blog */
-    #blog .grid { grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); }
-    .post { background: #fff; border-radius: var(--radius); overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,.05); display: flex; flex-direction: column; }
-    .post-content { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
-    .post h4 { margin-bottom: .6rem; }
-    .post p { color: var(--muted); font-size: .925rem; flex: 1; }
-    .read-more { margin-top: 1rem; font-weight: 600; color: var(--primary); }
-    /* Contact */
-    form { display: grid; gap: 1rem; max-width: 540px; margin-inline: auto; }
-    input, textarea { width: 100%; padding: .9rem 1.1rem; border: 1px solid #ccc;
-                      border-radius: var(--radius); font: inherit; }
-    textarea { resize: vertical; min-height: 160px; }
-    footer { background: #0d1117; color: #c3c6d1; text-align: center; padding: 2rem 1rem; font-size: .9rem; }
-    footer a { color: var(--primary-light); }
-    /* RESPONSIVE NAV (HAMBURGER) */
-    .burger { display:none; cursor:pointer; flex-direction:column; gap:5px; }
-    .burger span { width:25px;height:3px;background:var(--text);transition:.3s }
-    @media (max-width:768px){
-      ul.nav-links { position:fixed; inset:72px 0 0 0; background:#fff; flex-direction:column;
-                     transform:translateX(100%); transition:.35s; padding:2rem 1rem; }
-      ul.nav-links.open { transform:translateX(0); }
-      .burger{display:flex}
-    }
-  </style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-rEVpCQDqTdvYy33YV08iEeyLELT+0wSr+fZaMoZ2TzJYj5MFjjxZ2INZ6pY5mtHkt50mXcIRY/OkNbbKrO5eqg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+:root{
+  --primary:#0077ff;
+  --primary-light:#4799ff;
+  --bg:#fdfdfd;
+  --text:#1a1a1a;
+  --muted:#666;
+  --section-pad:5rem 1.2rem;
+  --max:1200px;
+  --rad:.75rem;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+h1,h2,h3{font-weight:700;line-height:1.25}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block;border-radius:var(--rad)}
+/* ---------------- NAV ---------------- */
+header{position:fixed;inset:0 0 auto 0;height:72px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);box-shadow:0 1px 4px rgba(0,0,0,.06);z-index:900}
+nav{max-width:var(--max);margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 1rem}
+.brand{font-size:1.2rem;font-weight:700;color:var(--primary)}
+ul.nav{list-style:none;display:flex;gap:1.5rem}
+ul.nav a{font-weight:600;transition:color .2s}
+ul.nav a:hover{color:var(--primary)}
+.burger{display:none;cursor:pointer;font-size:1.5rem;color:var(--text)}
+@media(max-width:768px){
+  ul.nav{position:fixed;inset:72px 0 0 0;background:#fff;flex-direction:column;transform:translateX(100%);transition:.35s;padding:2rem 1rem;gap:1.2rem}
+  ul.nav.open{transform:translateX(0)}
+  .burger{display:block}
+}
+/* --------------- GENERIC --------------- */
+section{padding:var(--section-pad)}
+.container{max-width:var(--max);margin-inline:auto}
+.grid{display:grid;gap:2rem}
+.reveal{opacity:0;transform:translateY(40px);transition:all .7s ease}
+.reveal.visible{opacity:1;transform:none}
+/* --------------- HERO --------------- */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 1.2rem;background:url('https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=1400&q=80') center/cover fixed}
+#hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
+#hero>*{position:relative;color:#fff}
+.badge{background:var(--primary);padding:.4rem .8rem;border-radius:999px;font-size:.875rem;margin-bottom:1rem}
+#hero h1{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:1rem}
+#hero p{font-size:1.15rem;max-width:600px;margin-bottom:2rem}
+.cta{display:inline-block;background:var(--primary);color:#fff;padding:.9rem 1.8rem;border-radius:var(--rad);font-weight:600;transition:background .25s}
+.cta:hover{background:var(--primary-light)}
+/* --------------- SERVICES --------------- */
+#services .grid{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:#fff;padding:2rem;border-radius:var(--rad);box-shadow:0 4px 12px rgba(0,0,0,.04);transition:transform .2s}
+.card:hover{transform:translateY(-4px)}
+.card h3{margin-bottom:.5rem}
+.card p{color:var(--muted);font-size:.95rem}
+/* --------------- NUMBERS --------------- */
+#numbers{background:linear-gradient(135deg,#e9f3ff 0%,#fff 100%)}
+.stats{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center}
+.stat{flex:1 1 150px;text-align:center}
+.stat h2{font-size:2.5rem;color:var(--primary)}
+.stat span{color:var(--muted);font-weight:600}
+/* --------------- CASES --------------- */
+#cases .grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.case{display:flex;flex-direction:column;gap:1rem}
+.case h4{font-size:1.1rem}
+.case span{color:var(--muted);font-size:.9rem}
+/* --------------- TESTIMONIALS --------------- */
+#testimonials{background:#f5f7fa}
+.quote{background:#fff;padding:2rem;border-radius:var(--rad);box-shadow:0 4px 10px rgba(0,0,0,.05);display:flex;flex-direction:column;gap:1.2rem;position:relative}
+.quote::before{content:"\f10d";font-family:"Font Awesome 6 Free";font-weight:900;font-size:2.5rem;color:var(--primary);position:absolute;top:-10px;left:20px;opacity:.15}
+.quote img{width:64px;height:64px;border-radius:50%;object-fit:cover}
+.client{display:flex;align-items:center;gap:1rem}
+/* --------------- BLOG --------------- */
+#blog .grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.post{background:#fff;border-radius:var(--rad);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05);display:flex;flex-direction:column}
+.post-content{padding:1.4rem;flex:1;display:flex;flex-direction:column}
+.post h4{margin-bottom:.6rem}
+.post p{color:var(--muted);font-size:.925rem;flex:1}
+.read-more{margin-top:1rem;font-weight:600;color:var(--primary)}
+/* --------------- CONTACT --------------- */
+form{display:grid;gap:1rem;max-width:540px;margin-inline:auto}
+input,textarea{width:100%;padding:.9rem 1.1rem;border:1px solid #ccc;border-radius:var(--rad);font:inherit}
+textarea{resize:vertical;min-height:160px}
+/* --------------- FOOTER --------------- */
+footer{background:#0d1117;color:#c3c6d1;text-align:center;padding:2rem 1rem;font-size:.9rem}
+footer a{color:var(--primary-light)}
+</style>
 </head>
 
 <body>
-  <!-- ----------  NAVBAR  ---------- -->
-  <header>
-    <nav>
-      <a href="#" class="brand">NomeDaEmpresa</a>
-      <div class="burger" id="burger">
-        <span></span><span></span><span></span>
+<header>
+  <nav>
+    <a class="brand" href="#">NomeDaEmpresa</a>
+    <i class="fas fa-bars burger" id="burger"></i>
+    <ul class="nav" id="nav">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#services">Serviços</a></li>
+      <li><a href="#numbers">Números</a></li>
+      <li><a href="#cases">Cases</a></li>
+      <li><a href="#testimonials">Depoimentos</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contato</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ---------------- HERO ---------------- -->
+<section id="hero">
+  <span class="badge">+20 anos de mercado</span>
+  <h1>Soluções que impulsionam<br>o crescimento do seu negócio.</h1>
+  <p>Unindo experiência, criatividade e tecnologia para resultados concretos.</p>
+  <a href="#contact" class="cta">Solicitar proposta</a>
+</section>
+
+<!-- ---------------- SERVICES ---------------- -->
+<section id="services">
+  <div class="container reveal">
+    <h2>Serviços</h2>
+    <p class="subtitle">Do planejamento à execução, entregamos valor onde mais importa.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Consultoria Estratégica</h3>
+        <p>Analisamos processos, identificamos oportunidades e traçamos um plano de ação claro.</p>
       </div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#services">Serviços</a></li>
-        <li><a href="#cases">Cases</a></li>
-        <li><a href="#about">Quem Somos</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#contact">Contato</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- ----------  HERO  ---------- -->
-  <section id="hero">
-    <span class="badge">+20 anos de mercado</span>
-    <h1>Soluções que impulsionam <br>o crescimento do seu negócio.</h1>
-    <p>Unimos experiência, criatividade e tecnologia para entregar resultados concretos em cada projeto.</p>
-    <a href="#contact" class="cta-btn">Solicitar proposta</a>
-  </section>
-
-  <!-- ----------  SERVIÇOS  ---------- -->
-  <section id="services">
-    <div class="container">
-      <h2>Serviços</h2>
-      <p class="subtitle">Do planejamento à execução, entregamos valor onde mais importa.</p>
-      <div class="grid">
-        <!-- 1 -->
-        <div class="service-card">
-          <h3>Consultoria Estratégica</h3>
-          <p>Analisamos processos, identificamos oportunidades e traçamos um plano de ação claro.</p>
-        </div>
-        <!-- 2 -->
-        <div class="service-card">
-          <h3>Implementação Tecnológica</h3>
-          <p>Integramos sistemas, automatizamos fluxos e garantimos escalabilidade.</p>
-        </div>
-        <!-- 3 -->
-        <div class="service-card">
-          <h3>Suporte Contínuo</h3>
-          <p>Equipe dedicada 24/7 para manter suas operações estáveis e seguras.</p>
-        </div>
-        <!-- 4 -->
-        <div class="service-card">
-          <h3>Treinamento &amp; Capacitação</h3>
-          <p>Capacitamos seu time para extrair o máximo das soluções implantadas.</p>
-        </div>
+      <div class="card">
+        <h3>Implementação Tecnológica</h3>
+        <p>Integramos sistemas, automatizamos fluxos e garantimos escalabilidade.</p>
+      </div>
+      <div class="card">
+        <h3>Suporte Contínuo</h3>
+        <p>Equipe dedicada 24/7 para manter suas operações estáveis e seguras.</p>
+      </div>
+      <div class="card">
+        <h3>Treinamento &amp; Capacitação</h3>
+        <p>Capacitamos seu time para extrair o máximo das soluções implantadas.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ----------  CASES  ---------- -->
-  <section id="cases">
-    <div class="container">
-      <h2>Cases de Sucesso</h2>
-      <div class="grid">
-        <!-- case 1 -->
-        <div class="case">
-          <img src="https://via.placeholder.com/600x400?text=Projeto+1" alt="Projeto 1">
-          <h4>Projeto Indústria 4.0</h4>
-          <span>Indústria • ROI +37 %</span>
-        </div>
-        <!-- case 2 -->
-        <div class="case">
-          <img src="https://via.placeholder.com/600x400?text=Projeto+2" alt="Projeto 2">
-          <h4>Plataforma E-commerce</h4>
-          <span>Varejo • +140 k pedidos/mês</span>
-        </div>
-        <!-- case 3 -->
-        <div class="case">
-          <img src="https://via.placeholder.com/600x400?text=Projeto+3" alt="Projeto 3">
-          <h4>Sistema de Telemedicina</h4>
-          <span>Saúde • 200 mil atendimentos/ano</span>
-        </div>
+<!-- ---------------- NUMBERS ---------------- -->
+<section id="numbers">
+  <div class="container reveal">
+    <h2>Nossos Números</h2>
+    <div class="stats">
+      <div class="stat"><h2 data-target="20">0</h2><span>Anos de atuação</span></div>
+      <div class="stat"><h2 data-target="300">0</h2><span>Clientes atendidos</span></div>
+      <div class="stat"><h2 data-target="750">0</h2><span>Projetos entregues</span></div>
+      <div class="stat"><h2 data-target="97">0</h2><span>% satisfação</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------------- CASES ---------------- -->
+<section id="cases">
+  <div class="container reveal">
+    <h2>Cases de Sucesso</h2>
+    <div class="grid">
+      <div class="case">
+        <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80" alt="Indústria 4.0">
+        <h4>Projeto Indústria 4.0</h4>
+        <span>Indústria • ROI +37 %</span>
+      </div>
+      <div class="case">
+        <img src="https://images.unsplash.com/photo-1515169067865-5387ec356754?auto=format&fit=crop&w=600&q=80" alt="E-commerce">
+        <h4>Plataforma E-commerce</h4>
+        <span>Varejo • +140 k pedidos/mês</span>
+      </div>
+      <div class="case">
+        <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=600&q=80" alt="Telemedicina">
+        <h4>Sistema de Telemedicina</h4>
+        <span>Saúde • 200 mil atendimentos/ano</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ----------  ABOUT  ---------- -->
-  <section id="about">
-    <div class="container">
-      <h2>Quem Somos</h2>
-      <p>Fundada em 2005, nossa jornada é marcada por inovação e compromisso com resultados.</p>
-      <div class="timeline">
-        <div class="milestone">
-          <h3>2005</h3>
-          <span>Início das operações</span>
-        </div>
-        <div class="milestone">
-          <h3>2012</h3>
-          <span>Primeiro projeto internacional</span>
-        </div>
-        <div class="milestone">
-          <h3>2018</h3>
-          <span>Equipe ultrapassa 50 colaboradores</span>
-        </div>
-        <div class="milestone">
-          <h3>2025</h3>
-          <span>20 anos, 300+ clientes atendidos</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ----------  BLOG  ---------- -->
-  <section id="blog">
-    <div class="container">
-      <h2>Insights &amp; Notícias</h2>
-      <div class="grid">
-        <article class="post">
-          <img src="https://via.placeholder.com/600x400?text=Post+1" alt="Post 1">
-          <div class="post-content">
-            <h4>Como escolher o parceiro tecnológico ideal</h4>
-            <p>Checklist essencial para reduzir riscos e maximizar retorno de investimento em TI.</p>
-            <a href="#" class="read-more">Continuar lendo →</a>
+<!-- ---------------- TESTIMONIALS ---------------- -->
+<section id="testimonials">
+  <div class="container reveal">
+    <h2>Depoimentos</h2>
+    <div class="grid">
+      <div class="quote">
+        <p>“Profissionais incríveis! Nosso projeto foi entregue antes do prazo e superou expectativas.”</p>
+        <div class="client">
+          <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=80&q=80" alt="Cliente 1">
+          <div>
+            <strong>Ana Silva</strong><br><small>COO — Indústria XPTO</small>
           </div>
-        </article>
-        <article class="post">
-          <img src="https://via.placeholder.com/600x400?text=Post+2" alt="Post 2">
-          <div class="post-content">
-            <h4>Tendências de automação para 2026</h4>
-            <p>O que esperar do mercado e como preparar sua empresa.</p>
-            <a href="#" class="read-more">Continuar lendo →</a>
+        </div>
+      </div>
+      <div class="quote">
+        <p>“A equipe foi essencial para escalar nosso e-commerce durante a Black Friday.”</p>
+        <div class="client">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=80&q=80" alt="Cliente 2">
+          <div>
+            <strong>Lucas Pereira</strong><br><small>Head de TI — Varejão</small>
           </div>
-        </article>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ----------  CONTACT  ---------- -->
-  <section id="contact">
-    <div class="container">
-      <h2>Entre em Contato</h2>
-      <form action="https://example.com/submit" method="POST">
-        <input type="text" name="name" placeholder="Nome*" required>
-        <input type="email" name="email" placeholder="E-mail*" required>
-        <input type="tel" name="phone" placeholder="Telefone (opcional)">
-        <textarea name="message" placeholder="Como podemos ajudar?" required></textarea>
-        <button type="submit" class="cta-btn">Enviar mensagem</button>
-      </form>
+<!-- ---------------- BLOG ---------------- -->
+<section id="blog">
+  <div class="container reveal">
+    <h2>Insights &amp; Notícias</h2>
+    <div class="grid">
+      <article class="post">
+        <img src="https://images.unsplash.com/photo-1485115905815-74a5c9fda2a4?auto=format&fit=crop&w=600&q=80" alt="Post 1">
+        <div class="post-content">
+          <h4>Como escolher o parceiro tecnológico ideal</h4>
+          <p>Checklist essencial para reduzir riscos e maximizar ROI em TI.</p>
+          <a href="#" class="read-more">Continuar lendo →</a>
+        </div>
+      </article>
+      <article class="post">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Post 2">
+        <div class="post-content">
+          <h4>Tendências de automação para 2026</h4>
+          <p>O que esperar do mercado e como preparar sua empresa.</p>
+          <a href="#" class="read-more">Continuar lendo →</a>
+        </div>
+      </article>
+      <article class="post">
+        <img src="https://images.unsplash.com/photo-1581090464777-7534be94d2ab?auto=format&fit=crop&w=600&q=80" alt="Post 3">
+        <div class="post-content">
+          <h4>5 erros comuns em projetos de software</h4>
+          <p>E como evitá-los para garantir entregas no prazo e dentro do orçamento.</p>
+          <a href="#" class="read-more">Continuar lendo →</a>
+        </div>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ----------  FOOTER  ---------- -->
-  <footer>
-    © 2005-2025 NomeDaEmpresa. Todos os direitos reservados.  
-    <br><a href="mailto:contato@nomedaempresa.com">contato@nomedaempresa.com</a> • <a href="https://wa.me/5500000000000" target="_blank">WhatsApp</a>
-  </footer>
+<!-- ---------------- CTA ---------------- -->
+<section id="cta">
+  <div class="container reveal" style="text-align:center">
+    <h2>Pronto para transformar sua empresa?</h2>
+    <p>Entre em contato hoje mesmo e descubra como podemos ajudar.</p>
+    <a href="#contact" class="cta">Falar com nosso time</a>
+  </div>
+</section>
 
-  <!-- ----------  JS (hamburger & smooth close)  ---------- -->
-  <script>
-    const burger = document.getElementById('burger');
-    const nav = document.getElementById('navLinks');
-    burger.addEventListener('click', () => {
-      nav.classList.toggle('open');
-      burger.classList.toggle('active');
-    });
-    // close menu on link click (mobile)
-    nav.querySelectorAll('a').forEach(link =>
-      link.addEventListener('click', () => nav.classList.remove('open')));
-  </script>
+<!-- ---------------- CONTACT ---------------- -->
+<section id="contact">
+  <div class="container reveal">
+    <h2>Entre em Contato</h2>
+    <form action="https://example.com/submit" method="POST">
+      <input type="text" name="name" placeholder="Nome*" required>
+      <input type="email" name="email" placeholder="E-mail*" required>
+      <input type="tel" name="phone" placeholder="Telefone (opcional)">
+      <textarea name="message" placeholder="Como podemos ajudar?" required></textarea>
+      <button type="submit" class="cta">Enviar mensagem</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  © 2005-2025 NomeDaEmpresa. Todos os direitos reservados.<br>
+  <a href="mailto:contato@nomedaempresa.com">contato@nomedaempresa.com</a> •
+  <a href="https://wa.me/5500000000000" target="_blank">WhatsApp</a>
+</footer>
+
+<script>
+// ------------- NAV TOGGLE -------------
+const burger=document.getElementById('burger'),nav=document.getElementById('nav');
+burger.addEventListener('click',()=>nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+// ------------- REVEAL ON SCROLL -------------
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('visible');
+  });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// ------------- COUNTERS -------------
+const counters=document.querySelectorAll('[data-target]');
+const speed=60; // lower = faster
+function animateCounters(){
+  counters.forEach(c=>{
+    const update=()=>{
+      const target=+c.getAttribute('data-target');
+      let current=+c.innerText;
+      const inc=Math.ceil(target/speed);
+      if(current<target){
+        c.innerText=current+inc;
+        setTimeout(update,30);
+      }else{
+        c.innerText=target;
+      }
+    };
+    update();
+  });
+}
+const numSection=document.getElementById('numbers');
+const numObs=new IntersectionObserver((e)=>{
+  if(e[0].isIntersecting){animateCounters();numObs.disconnect();}
+},{threshold:.3});
+numObs.observe(numSection);
+</script>
 </body>
 </html>
