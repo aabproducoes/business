@@ -1,146 +1,238 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Nome da Empresa — 20 anos impulsionando negócios</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Nome da Empresa — 20 anos impulsionando negócios</title>
 
-<!-- Fontes / Ícones -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- fontes + ícones -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- PWA & GA4 -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0077ff">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-<script>
-window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','G-XXXXXXX');          /* ← troque seu ID GA4 */
-</script>
+  <!-- PWA / GA4 -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0077ff">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date()); gtag('config','G-XXXXXXX');             /* ⬅ troque pelo seu ID GA4 */
+  </script>
 
-<style>
-/* ---------- Variáveis ---------- */
-:root{
-  --primary:#0077ff; --primary-light:#4799ff;
-  --bg:#fdfdfd;      --text:#1a1a1a; --muted:#666;
-  --section-pad:5rem 1.2rem; --max:1200px; --rad:.75rem;
-}
-/* Tema escuro */
-.dark{ --bg:#1a1a1a; --text:#fdfdfd; --muted:#aaa }
-/* Reset */
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"Inter",sans-serif;line-height:1.6;background:var(--bg);color:var(--text)}
-h1,h2,h3{font-weight:700;line-height:1.25}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block;border-radius:var(--rad)}
+  <!-- ESTILOS -->
+  <style>
+  :root{
+    --primary:#0077ff;  --primary-light:#4799ff;
+    --bg:#fdfdfd;       --text:#1a1a1a;  --muted:#666;
+    --section-pad:5rem 1.2rem; --max:1200px; --rad:.75rem;
+  }
+  .dark{
+    --bg:#1a1a1a;  --text:#fdfdfd;  --muted:#aaa;
+  }
 
-/* ---------- HEADER / NAV ---------- */
-header{position:fixed;inset:0 0 auto 0;height:72px;z-index:900;
-        background:rgba(255,255,255,.85);backdrop-filter:blur(8px);
-        box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.dark header{background:rgba(20,20,20,.85)}
-nav{max-width:var(--max);margin:0 auto;height:100%;padding:0 1rem;
-    display:flex;align-items:center;justify-content:space-between}
-.brand{font-size:1.2rem;font-weight:700;color:var(--primary)}
-ul.nav{list-style:none;display:flex;gap:1.5rem}
-ul.nav a{font-weight:600;transition:color .2s}
-ul.nav a:hover{color:var(--primary)}
-.right-nav{display:flex;align-items:center;gap:1.2rem}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Inter",sans-serif;line-height:1.6;background:var(--bg);color:var(--text)}
+  h1,h2,h3{font-weight:700;line-height:1.25}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block;border-radius:var(--rad)}
 
-/* Burger */
-.burger{display:none;cursor:pointer;font-size:1.6rem;color:var(--text)}
-@media (max-width:768px){
-  ul.nav{position:fixed;inset:72px 0 0 0;background:var(--bg);
-         flex-direction:column;transform:translateX(100%);
-         transition:.35s;padding:2rem 1rem;gap:1.2rem;z-index:800}
-  ul.nav.open{transform:translateX(0)}
-  .burger{display:block}
-}
+  /* ---------------- HEADER / NAV ---------------- */
+  header{
+    position:fixed;inset:0 0 auto 0;height:72px;z-index:900;
+    background:rgba(255,255,255,.85);backdrop-filter:blur(8px);
+    box-shadow:0 1px 4px rgba(0,0,0,.06)
+  }
+  .dark header{background:rgba(20,20,20,.85)}
+  nav{
+    max-width:var(--max);margin:0 auto;height:100%;padding:0 1rem;
+    display:flex;align-items:center;justify-content:space-between
+  }
+  .brand{font-size:1.2rem;font-weight:700;color:var(--primary)}
 
-/* ---------- LEVER (Sun/Moon + animações) ---------- */
-.theme-switch{display:flex;flex-direction:column;align-items:center;font-size:.7rem;user-select:none}
-#switchText{margin-bottom:3px;font-weight:600;color:var(--primary)}
-.theme-switch input{display:none}
+  ul.nav{list-style:none;display:flex;gap:1.5rem}
+  ul.nav a{font-weight:600;transition:color .2s}
+  ul.nav a:hover{color:var(--primary)}
 
-.switch-track{
-  position:relative;width:72px;height:28px;border:2px solid #00ff00;
-  border-radius:28px;background:var(--bg);cursor:pointer;
-  transition:background .3s;
-}
-/* bolas fixas */
-.circle{position:absolute;top:50%;transform:translateY(-50%);width:12px;height:12px;border-radius:50%}
-.circle.light{left:8px;background:#fff}
-.circle.dark {right:8px;background:#000}
+  /* Right-side container */
+  .right-nav{display:flex;align-items:center;gap:1.2rem}
 
-/* Lever (knob) */
-.lever{
-  position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;
-  background:var(--primary);display:flex;align-items:center;justify-content:center;
-  transition:transform .4s cubic-bezier(.34,1.56,.64,1);
-}
-/* Ícones Sun/Moon (SVG inline) */
-.lever svg{width:14px;height:14px;pointer-events:none}
-.moon{opacity:0;transition:opacity .35s}
-#themeToggle:checked + .switch-track .lever{transform:translateX(44px)}
-#themeToggle:checked + .switch-track .lever .sun{opacity:0}
-#themeToggle:checked + .switch-track .lever .moon{opacity:1}
+  /* burger */
+  .burger{display:none;cursor:pointer;font-size:1.6rem;color:var(--text)}
+  @media (max-width:768px){
+    ul.nav{
+      position:fixed;inset:72px 0 0 0;background:var(--bg);
+      flex-direction:column;transform:translateX(100%);
+      transition:.35s;padding:2rem 1rem;gap:1.2rem;z-index:800
+    }
+    ul.nav.open{transform:translateX(0)}
+    .burger{display:block}
+  }
 
-/* ---------- FAÍSCAS ---------- */
-.spark{
-  position:absolute;width:4px;height:4px;background:#ffd700;border-radius:50%;
-  opacity:0;pointer-events:none
-}
-@keyframes sparkAnim{
-  from{transform:scale(1);opacity:1}
-  to  {transform:scale(0);opacity:0}
-}
+  /* ------------ THEME LEVER ------------ */
+  .theme-switch{display:flex;flex-direction:column;align-items:center;font-size:.7rem;user-select:none}
+  #switchText{margin-bottom:3px;font-weight:600;color:var(--primary)}
+  .theme-switch input{display:none}
 
-/* ---------- GOTA (DRIP) ---------- */
-@keyframes drip{
-  0%{top:2px;opacity:1}
-  100%{top:40px;opacity:0}
-}
-.switch-track.drip::after{
-  content:'';position:absolute;left:50%;transform:translateX(-50%);
-  width:6px;height:6px;border-radius:50%;background:var(--primary);
-  animation:drip .45s ease-out forwards
-}
+  .switch-track{
+    position:relative;width:72px;height:28px;border:2px solid #00ff00;
+    border-radius:28px;background:var(--bg);cursor:pointer;overflow:visible
+  }
+  .circle{position:absolute;top:50%;transform:translateY(-50%);width:12px;height:12px;border-radius:50%}
+  .circle.light{left:8px;background:#fff}
+  .circle.dark {right:8px;background:#000}
 
-/* ---------- WIPE RADIAL ---------- */
-.wipe-overlay{
-  position:fixed;inset:0;pointer-events:none;z-index:999;
-  background:var(--wipe-color,#fff);
-  clip-path:circle(0 at var(--x) var(--y));
-  transition:clip-path .8s ease-out;
-}
+  .lever{
+    --size:24px;
+    position:absolute;top:2px;left:2px;width:var(--size);height:var(--size);
+    border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;
+    transition:transform .45s cubic-bezier(.34,1.56,.64,1);overflow:hidden
+  }
+  #themeToggle:checked + .switch-track .lever{transform:translateX(44px)}
 
-/* ---------- SEÇÕES GENÉRICAS ---------- */
-section{padding:var(--section-pad)}
-.container{max-width:var(--max);margin-inline:auto}
-.grid{display:grid;gap:2rem}
-.reveal{opacity:0;transform:translateY(40px);transition:all .7s ease}
-.reveal.visible{opacity:1;transform:none}
+  /* sun ↔ moon morph */
+  .lever svg{width:14px;fill:#fff;transition:transform .45s ease,opacity .25s ease}
+  .lever .moon{position:absolute;opacity:0}
+  #themeToggle:checked + .switch-track .lever .sun{opacity:0;transform:scale(0)}
+  #themeToggle:checked + .switch-track .lever .moon{opacity:1;transform:scale(1)}
 
-/* ---------- HERO (restante dos estilos idêntico) ---------- */
-#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-      text-align:center;padding:0 1.2rem;background:url('https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=1400&q=80') center/cover fixed}
-#hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
-#hero>*{position:relative;color:#fff}
-.badge{background:var(--primary);padding:.4rem .8rem;border-radius:999px;font-size:.875rem;margin-bottom:1rem}
-#hero h1{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:1rem}
-#hero p{font-size:1.15rem;max-width:600px;margin-bottom:2rem}
-.cta{display:inline-block;background:var(--primary);color:#fff;padding:.9rem 1.8rem;border-radius:var(--rad);font-weight:600;transition:background .25s}
-.cta:hover{background:var(--primary-light)}
+  /* sparks */
+  .spark{
+    position:absolute;width:6px;height:2px;background:#fff;transform-origin:left center;
+    opacity:0;pointer-events:none;animation:spark .4s ease-out forwards
+  }
+  @keyframes spark{
+    0%{opacity:1;transform:scaleX(.2) rotate(0deg)}
+    80%{opacity:1}
+    100%{opacity:0;transform:scaleX(1.4) rotate(90deg)}
+  }
 
-/* demais estilos (serviços, cases, etc.) são os mesmos do envio anterior */
-</style>
+  /* dripping ink when enter dark */
+  .switch-track.drop::after{
+    content:"";position:absolute;top:0;right:50%;width:6px;height:6px;
+    background:#00ff00;border-radius:50%;animation:drop .4s ease-out forwards
+  }
+  @keyframes drop{
+    0%{transform:translateY(-4px);opacity:.9}
+    100%{transform:translateY(14px);opacity:0}
+  }
+
+  /* radial wipe overlay */
+  #wipe{
+    position:fixed;inset:0;background:var(--bg);pointer-events:none;z-index:850;
+    clip-path:circle(0 at var(--x) var(--y));transition:clip-path .6s ease
+  }
+
+  /* optional neon-pulse */
+  @keyframes neonPulse{
+    0%,100%{box-shadow:0 0 0 #00ff00}
+    50%    {box-shadow:0 0 10px 3px #00ff00}
+  }
+  .switch-track:hover,
+  .switch-track:focus-within{animation:neonPulse 1.3s ease-in-out infinite;}
+
+  /* ---------------- SEÇÕES ---------------- */
+  section{padding:var(--section-pad)}
+  .container{max-width:var(--max);margin-inline:auto}
+  .grid{display:grid;gap:2rem}
+  .reveal{opacity:0;transform:translateY(40px);transition:all .7s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* hero */
+  #hero{
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:0 1.2rem;
+    background:url('https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=1400&q=80') center/cover fixed
+  }
+  #hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
+  #hero>*{position:relative;color:#fff}
+  .badge{background:var(--primary);padding:.4rem .8rem;border-radius:999px;font-size:.875rem;margin-bottom:1rem}
+  #hero h1{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:1rem}
+  #hero p{font-size:1.15rem;max-width:600px;margin-bottom:2rem}
+  .cta{display:inline-block;background:var(--primary);color:#fff;padding:.9rem 1.8rem;border-radius:var(--rad);font-weight:600;transition:background .25s}
+  .cta:hover{background:var(--primary-light)}
+
+  /* services */
+  #services .grid{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .card{
+    background:var(--bg);padding:2rem;border-radius:var(--rad);
+    box-shadow:0 4px 12px rgba(0,0,0,.04);transition:transform .2s
+  }
+  .dark .card{background:#111}
+  .card:hover{transform:translateY(-4px)}
+  .card h3{margin-bottom:.5rem}
+  .card p{color:var(--muted);font-size:.95rem}
+
+  /* numbers */
+  #numbers{background:linear-gradient(135deg,#e9f3ff 0%,#fff 100%)}
+  .dark #numbers{background:#0e1a32}
+  .stats{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center}
+  .stat{flex:1 1 150px;text-align:center}
+  .stat h2{font-size:2.5rem;color:var(--primary)}
+  .stat span{color:var(--muted);font-weight:600}
+
+  /* cases */
+  #cases .grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .case{display:flex;flex-direction:column;gap:1rem}
+  .case h4{font-size:1.1rem}
+  .case span{color:var(--muted);font-size:.9rem}
+
+  /* testimonials */
+  #testimonials{background:#f5f7fa}.dark #testimonials{background:#181e28}
+  .quote{
+    background:var(--bg);padding:2rem;border-radius:var(--rad);
+    box-shadow:0 4px 10px rgba(0,0,0,.05);display:flex;flex-direction:column;gap:1.2rem;position:relative
+  }
+  .dark .quote{background:#111}
+  .quote::before{
+    content:"\f10d";font-family:"Font Awesome 6 Free";font-weight:900;font-size:2.5rem;
+    color:var(--primary);position:absolute;top:-10px;left:20px;opacity:.15
+  }
+  .quote img{width:64px;height:64px;border-radius:50%;object-fit:cover}
+  .client{display:flex;align-items:center;gap:1rem}
+
+  /* FAQ */
+  #faq details{
+    background:var(--bg);border-radius:var(--rad);margin-bottom:1rem;
+    padding:1rem 1.2rem;box-shadow:0 3px 8px rgba(0,0,0,.04)
+  }
+  .dark #faq details{background:#111}
+  summary{cursor:pointer;font-weight:600;list-style:none}
+  summary::marker{display:none}
+
+  /* blog */
+  #blog .grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .post{
+    background:var(--bg);border-radius:var(--rad);overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);display:flex;flex-direction:column
+  }
+  .dark .post{background:#111}
+  .post-content{padding:1.4rem;flex:1;display:flex;flex-direction:column}
+  .post h4{margin-bottom:.6rem}
+  .post p{color:var(--muted);font-size:.925rem;flex:1}
+  .read-more{margin-top:1rem;font-weight:600;color:var(--primary)}
+
+  /* form */
+  form{display:grid;gap:1rem;max-width:540px;margin-inline:auto}
+  input,textarea{width:100%;padding:.9rem 1.1rem;border:1px solid #ccc;border-radius:var(--rad);font:inherit}
+  textarea{resize:vertical;min-height:160px}
+
+  /* footer */
+  footer{background:#0d1117;color:#c3c6d1;text-align:center;padding:2rem 1rem;font-size:.9rem}
+  footer a{color:var(--primary-light)}
+
+  /* whatsapp float */
+  .wa-float{
+    position:fixed;bottom:20px;right:20px;z-index:950;
+    background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 10px rgba(0,0,0,.25);font-size:28px
+  }
+  </style>
 </head>
 
 <body>
-<!-- ---------- WIPE OVERLAY ---------- -->
-<div class="wipe-overlay" id="wipe"></div>
+<div id="wipe"></div>
 
-<!-- ---------- HEADER ---------- -->
+<!-- ============ HEADER ============ -->
 <header>
   <nav>
     <a class="brand" href="#">NomeDaEmpresa</a>
@@ -153,27 +245,16 @@ section{padding:var(--section-pad)}
     </ul>
 
     <div class="right-nav">
-      <!-- LEVER -->
+      <!-- Lever -->
       <div class="theme-switch">
         <span id="switchText">Light</span>
         <input type="checkbox" id="themeToggle">
         <label for="themeToggle" class="switch-track">
           <span class="circle light"></span>
           <span class="circle dark"></span>
-
-          <!-- knob -->
           <span class="lever">
-            <!-- Sun (line) -->
-            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
-              <circle cx="12" cy="12" r="5"/>
-              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-            </svg>
-            <!-- Moon -->
-            <svg class="moon" viewBox="0 0 24 24" fill="#fff">
-              <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 1021 12.79z"/>
-            </svg>
-            <!-- Faíscas (três) -->
-            <span class="spark"></span><span class="spark"></span><span class="spark"></span>
+            <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></svg>
+            <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79z"/></svg>
           </span>
         </label>
       </div>
@@ -183,7 +264,7 @@ section{padding:var(--section-pad)}
   </nav>
 </header>
 
-<!-- ---------- HERO ---------- -->
+<!-- ============ HERO ============ -->
 <section id="hero">
   <span class="badge">+20 anos de mercado</span>
   <h1>Soluções que impulsionam<br>o crescimento do seu negócio.</h1>
@@ -196,69 +277,203 @@ section{padding:var(--section-pad)}
                  loop autoplay></lottie-player>
 </section>
 
-<!-- … (demais seções idênticas ao código anterior) … -->
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="container reveal">
+    <h2>Serviços</h2>
+    <p class="subtitle">Do planejamento à execução, entregamos valor onde mais importa.</p>
+    <div class="grid">
+      <div class="card"><h3>Consultoria Estratégica</h3><p>Analisamos processos, identificamos oportunidades e traçamos um plano de ação claro.</p></div>
+      <div class="card"><h3>Implementação Tecnológica</h3><p>Integramos sistemas, automatizamos fluxos e garantimos escalabilidade.</p></div>
+      <div class="card"><h3>Suporte Contínuo</h3><p>Equipe dedicada 24/7 para manter suas operações estáveis e seguras.</p></div>
+      <div class="card"><h3>Treinamento &amp; Capacitação</h3><p>Capacitamos seu time para extrair o máximo das soluções implantadas.</p></div>
+    </div>
+  </div>
+</section>
 
-<!-- ---------- FOOTER / Flutuantes / Banner (iguais) ---------- -->
+<!-- ============ NUMBERS ============ -->
+<section id="numbers">
+  <div class="container reveal">
+    <h2>Nossos Números</h2>
+    <div class="stats">
+      <div class="stat"><h2 data-target="20">0</h2><span>Anos de atuação</span></div>
+      <div class="stat"><h2 data-target="300">0</h2><span>Clientes atendidos</span></div>
+      <div class="stat"><h2 data-target="750">0</h2><span>Projetos entregues</span></div>
+      <div class="stat"><h2 data-target="97">0</h2><span>% satisfação</span></div>
+    </div>
+  </div>
+</section>
 
-<!-- ---------- Libs externas ---------- -->
+<!-- ============ CASES ============ -->
+<section id="cases">
+  <div class="container reveal">
+    <h2>Cases de Sucesso</h2>
+    <div class="grid">
+      <div class="case">
+        <h4>Redesign de Plataforma</h4>
+        <div class="ba"
+             data-before="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+             data-after ="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=800&q=80">
+        </div>
+        <span>UX • Taxa de conversão +54 %</span>
+      </div>
+      <div class="case">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80" alt>
+        <h4>Projeto Indústria 4.0</h4><span>Indústria • ROI +37 %</span>
+      </div>
+      <div class="case">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1515169067865-5387ec356754?auto=format&fit=crop&w=600&q=80" alt>
+        <h4>Plataforma E-commerce</h4><span>Varejo • +140 k pedidos/mês</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section id="testimonials">
+  <div class="container reveal">
+    <h2>Depoimentos</h2>
+    <div class="grid">
+      <div class="quote"><p>“Profissionais incríveis! Nosso projeto foi entregue antes do prazo e superou expectativas.”</p><div class="client"><img loading="lazy" src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=80&q=80"><div><strong>Ana Silva</strong><br><small>COO — Indústria XPTO</small></div></div></div>
+      <div class="quote"><p>“A equipe foi essencial para escalar nosso e-commerce durante a Black Friday.”</p><div class="client"><img loading="lazy" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=80&q=80"><div><strong>Lucas Pereira</strong><br><small>Head de TI — Varejão</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="container reveal">
+    <h2>Perguntas Frequentes</h2>
+    <details><summary>Quanto tempo leva um projeto médio?</summary><p>Depende da complexidade, mas a média é de 8–12 semanas da concepção ao go-live.</p></details>
+    <details><summary>Atendem empresas fora do Brasil?</summary><p>Sim! Já entregamos projetos em 5 países da América Latina e Europa.</p></details>
+    <details><summary>Existe suporte após a entrega?</summary><p>Oferecemos planos 24/7 ou pacotes de horas conforme a necessidade.</p></details>
+  </div>
+</section>
+
+<!-- ============ BLOG ============ -->
+<section id="blog">
+  <div class="container reveal">
+    <h2>Insights &amp; Notícias</h2>
+    <div class="grid">
+      <article class="post"><img loading="lazy" src="https://images.unsplash.com/photo-1485115905815-74a5c9fda2a4?auto=format&fit=crop&w=600&q=80" alt><div class="post-content"><h4>Como escolher o parceiro tecnológico ideal</h4><p>Checklist essencial para reduzir riscos e maximizar ROI em TI.</p><a href="#" class="read-more">Continuar lendo →</a></div></article>
+      <article class="post"><img loading="lazy" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt><div class="post-content"><h4>Tendências de automação para 2026</h4><p>O que esperar do mercado e como preparar sua empresa.</p><a href="#" class="read-more">Continuar lendo →</a></div></article>
+      <article class="post"><img loading="lazy" src="https://images.unsplash.com/photo-1581090464777-7534be94d2ab?auto=format&fit=crop&w=600&q=80" alt><div class="post-content"><h4>5 erros comuns em projetos de software</h4><p>E como evitá-los para garantir entregas no prazo e dentro do orçamento.</p><a href="#" class="read-more">Continuar lendo →</a></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section id="cta">
+  <div class="container reveal" style="text-align:center">
+    <h2>Pronto para transformar sua empresa?</h2>
+    <p>Entre em contato hoje mesmo e descubra como podemos ajudar.</p>
+    <a href="#contact" class="cta">Falar com nosso time</a>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="container reveal">
+    <h2>Entre em Contato</h2>
+    <form action="https://example.com/submit" method="POST">
+      <input type="text"   name="name"  placeholder="Nome*" required>
+      <input type="email"  name="email" placeholder="E-mail*" required>
+      <input type="tel"    name="phone" placeholder="Telefone (opcional)">
+      <textarea name="message" placeholder="Como podemos ajudar?" required></textarea>
+      <button type="submit" class="cta">Enviar mensagem</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  © 2005-2025 NomeDaEmpresa. Todos os direitos reservados.<br>
+  <a href="mailto:contato@nomedaempresa.com">contato@nomedaempresa.com</a> •
+  <a href="https://wa.me/5500000000000" target="_blank">WhatsApp</a>
+</footer>
+
+<!-- botões permanentes -->
+<a class="wa-float" href="https://wa.me/5500000000000" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;color:#000;padding:1rem;text-align:center;box-shadow:0 -2px 6px rgba(0,0,0,.15);z-index:960">
+  Utilizamos cookies para melhorar sua experiência. <button id="cookieOk" class="cta" style="padding:.4rem 1rem;font-size:.9rem">Aceitar</button>
+</div>
+
+<!-- libs -->
 <script src="https://cdn.jsdelivr.net/npm/before-after.js@latest"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
+<!-- SCRIPTS -->
 <script>
-/* ------ NAV ------ */
-const burger=document.getElementById('burger'),nav=document.getElementById('nav');
+/* ---------- burger ---------- */
+const burger=document.getElementById('burger'), nav=document.getElementById('nav');
 burger.addEventListener('click',()=>nav.classList.toggle('open'));
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 
-/* ------ THEME & ANIMAÇÕES ------ */
-const root=document.documentElement, toggle=document.getElementById('themeToggle'),
-      txt=document.getElementById('switchText'), wipe=document.getElementById('wipe'),
-      lever=document.querySelector('.lever'), track=document.querySelector('.switch-track');
+/* ---------- dark-mode & FX ---------- */
+const root=document.documentElement,
+      themeToggle=document.getElementById('themeToggle'),
+      switchText=document.getElementById('switchText'),
+      track=document.querySelector('.switch-track'),
+      wipe=document.getElementById('wipe');
 
 function makeSparks(){
-  const sparks=lever.querySelectorAll('.spark');
-  sparks.forEach(s=>{
-    const angle=Math.random()*360, dist=16+Math.random()*8;
-    s.style.left=`50%`;s.style.top=`50%`;
-    s.style.transform=`translate(-50%,-50%) translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px)`;
-    s.style.animation='sparkAnim .4s linear';
-    s.onanimationend=()=>{s.style.animation='';s.style.opacity=0;}
-  });
-}
-function drip(){
-  track.classList.add('drip');
-  setTimeout(()=>track.classList.remove('drip'),500);
-}
-function radialWipe(ev,color){
-  const x=(ev.clientX||window.innerWidth-20)+'px', y=(ev.clientY||20)+'px';
-  wipe.style.setProperty('--x',x); wipe.style.setProperty('--y',y);
-  wipe.style.setProperty('--wipe-color',color);
-  requestAnimationFrame(()=>wipe.style.clipPath='circle(150vmax at var(--x) var(--y))');
-  setTimeout(()=>wipe.style.clipPath='circle(0 at var(--x) var(--y))',820);
-}
-function applyTheme(mode,ev){
-  if(mode==='dark'){
-    root.classList.add('dark');toggle.checked=true;txt.textContent='Dark';
-    if(!localStorage.darkConfetti){confetti();localStorage.darkConfetti=1;}
-    drip(); makeSparks(); radialWipe(ev||{},'#000');
-  }else{
-    root.classList.remove('dark');toggle.checked=false;txt.textContent='Light';
-    makeSparks(); radialWipe(ev||{},'#fff');
+  for(let i=0;i<3;i++){
+    const s=document.createElement('span'); s.className='spark';
+    const ang=Math.random()*360, dist=12+Math.random()*6;
+    s.style.transform=`rotate(${ang}deg) translate(${dist}px)`; track.appendChild(s);
+    setTimeout(()=>s.remove(),380);
   }
 }
-applyTheme(localStorage.theme==='dark'?'dark':'light');
-
-toggle.addEventListener('change',e=>{
-  const mode=toggle.checked?'dark':'light';
+function radialWipe(x,y){
+  wipe.style.setProperty('--x',`${x}px`); wipe.style.setProperty('--y',`${y}px`);
+  wipe.style.background=root.classList.contains('dark')?'#1a1a1a':'#fdfdfd';
+  wipe.style.clipPath='circle(0 at var(--x) var(--y))';
+  requestAnimationFrame(()=>wipe.style.clipPath='circle(150vmax at var(--x) var(--y))');
+  setTimeout(()=>wipe.style.clipPath='circle(0 at var(--x) var(--y))',650);
+}
+function applyTheme(mode, user, pt){
+  if(mode==='dark'){
+    root.classList.add('dark'); switchText.textContent='Dark';
+    if(user){ track.classList.add('drop'); setTimeout(()=>track.classList.remove('drop'),400); }
+  }else{ root.classList.remove('dark'); switchText.textContent='Light'; }
+  themeToggle.checked=mode==='dark';
+  makeSparks();
+  if(pt){ radialWipe(pt.x,pt.y); }
+  if(mode==='dark' && !localStorage.darkCelebrated){ confetti({particleCount:120,spread:70,origin:{y:.1}}); localStorage.darkCelebrated=1; }
   localStorage.theme=mode;
-  applyTheme(mode,e);
+}
+applyTheme(localStorage.theme==='dark'?'dark':'light', false);
+track.addEventListener('click',e=>{
+  const mode=themeToggle.checked?'dark':'light';
+  applyTheme(mode, true, {x:e.clientX,y:e.clientY});
 });
 
-/* ------ REVEAL ON SCROLL / COUNTERS / COOKIE / BEFORE-AFTER / SW ------ */
-/* (mesmo código das versões anteriores)                                   */
+/* ---------- reveal ---------- */
+const revealObs=new IntersectionObserver(ent=>ent.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+/* ---------- counters ---------- */
+function count(el){const t=+el.dataset.target,inc=Math.ceil(t/60);const upd=()=>{const cur=+el.textContent;if(cur<t){el.textContent=cur+inc;setTimeout(upd,30);}else{el.textContent=t;}};upd();}
+const numObs=new IntersectionObserver(e=>{if(e[0].isIntersecting){document.querySelectorAll('[data-target]').forEach(count);numObs.disconnect();}},{threshold:.3});
+numObs.observe(document.getElementById('numbers'));
+
+/* ---------- cookie ---------- */
+const banner=document.getElementById('cookieBanner'), ok=document.getElementById('cookieOk');
+if(!localStorage.cookieOK){banner.style.display='block'; ok.onclick=()=>{localStorage.cookieOK=1; banner.remove();};}
+
+/* ---------- before/after ---------- */
+window.addEventListener('DOMContentLoaded',()=>BeforeAfter.initialize());
+
+/* ---------- PWA ---------- */
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
 </script>
 
-<!-- Schema.org igual -->
+<!-- schema -->
+<script type="application/ld+json">
+{ "@context":"https://schema.org","@type":"Organization","name":"NomeDaEmpresa","url":"https://www.exemplo.com","logo":"https://www.exemplo.com/logo.png",
+  "sameAs":["https://www.instagram.com/nomedaempresa","https://www.linkedin.com/company/nomedaempresa"],
+  "contactPoint":[{ "@type":"ContactPoint","telephone":"+55-00-0000-0000","contactType":"customer service","areaServed":"BR","availableLanguage":["pt-BR","en"]}]}
+</script>
 </body>
 </html>
