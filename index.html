@@ -5,28 +5,32 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Nome da Empresa — 20 anos impulsionando negócios</title>
 
-  <!-- fontes + ícones -->
+  <!-- Fontes & ícones -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- PWA / GA4 -->
+  <!-- PWA & Google Analytics -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0077ff">
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
   <script>
-    window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-    gtag('js',new Date()); gtag('config','G-XXXXXXX');             /* ⬅ troque pelo seu ID GA4 */
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');      /* ⬅ troque pelo seu ID GA4 */
   </script>
 
   <!-- ESTILOS -->
   <style>
   :root{
-    --primary:#0077ff;  --primary-light:#4799ff;
-    --bg:#fdfdfd;       --text:#1a1a1a;  --muted:#666;
-    --section-pad:5rem 1.2rem; --max:1200px; --rad:.75rem;
+    --primary:#0077ff;      --primary-light:#4799ff;
+    --bg:#fdfdfd;           --text:#1a1a1a;   --muted:#666;
+    --section-pad:5rem 1.2rem;
+    --max:1200px;           --rad:.75rem;
   }
   .dark{
-    --bg:#1a1a1a;  --text:#fdfdfd;  --muted:#aaa;
+    --bg:#1a1a1a;   --text:#fdfdfd;   --muted:#aaa;
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
@@ -35,7 +39,7 @@
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block;border-radius:var(--rad)}
 
-  /* ---------------- HEADER / NAV ---------------- */
+  /* ---------- HEADER / NAV ---------- */
   header{
     position:fixed;inset:0 0 auto 0;height:72px;z-index:900;
     background:rgba(255,255,255,.85);backdrop-filter:blur(8px);
@@ -47,17 +51,14 @@
     display:flex;align-items:center;justify-content:space-between
   }
   .brand{font-size:1.2rem;font-weight:700;color:var(--primary)}
-
   ul.nav{list-style:none;display:flex;gap:1.5rem}
   ul.nav a{font-weight:600;transition:color .2s}
   ul.nav a:hover{color:var(--primary)}
 
-  /* Right-side container */
   .right-nav{display:flex;align-items:center;gap:1.2rem}
 
-  /* burger */
   .burger{display:none;cursor:pointer;font-size:1.6rem;color:var(--text)}
-  @media (max-width:768px){
+  @media(max-width:768px){
     ul.nav{
       position:fixed;inset:72px 0 0 0;background:var(--bg);
       flex-direction:column;transform:translateX(100%);
@@ -67,7 +68,7 @@
     .burger{display:block}
   }
 
-  /* ------------ THEME LEVER ------------ */
+  /* ---------- THEME LEVER ---------- */
   .theme-switch{display:flex;flex-direction:column;align-items:center;font-size:.7rem;user-select:none}
   #switchText{margin-bottom:3px;font-weight:600;color:var(--primary)}
   .theme-switch input{display:none}
@@ -83,12 +84,14 @@
   .lever{
     --size:24px;
     position:absolute;top:2px;left:2px;width:var(--size);height:var(--size);
-    border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;
-    transition:transform .45s cubic-bezier(.34,1.56,.64,1);overflow:hidden
+    border-radius:50%;background:var(--primary);
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .45s cubic-bezier(.34,1.56,.64,1);
+    overflow:hidden
   }
   #themeToggle:checked + .switch-track .lever{transform:translateX(44px)}
 
-  /* sun ↔ moon morph */
+  /* sun ↔ moon */
   .lever svg{width:14px;fill:#fff;transition:transform .45s ease,opacity .25s ease}
   .lever .moon{position:absolute;opacity:0}
   #themeToggle:checked + .switch-track .lever .sun{opacity:0;transform:scale(0)}
@@ -96,8 +99,9 @@
 
   /* sparks */
   .spark{
-    position:absolute;width:6px;height:2px;background:#fff;transform-origin:left center;
-    opacity:0;pointer-events:none;animation:spark .4s ease-out forwards
+    position:absolute;width:6px;height:2px;background:#fff;
+    transform-origin:left center;opacity:0;pointer-events:none;
+    animation:spark .4s ease-out forwards
   }
   @keyframes spark{
     0%{opacity:1;transform:scaleX(.2) rotate(0deg)}
@@ -105,23 +109,24 @@
     100%{opacity:0;transform:scaleX(1.4) rotate(90deg)}
   }
 
-  /* dripping ink when enter dark */
+  /* dripping ink */
   .switch-track.drop::after{
-    content:"";position:absolute;top:0;right:50%;width:6px;height:6px;
-    background:#00ff00;border-radius:50%;animation:drop .4s ease-out forwards
+    content:"";position:absolute;top:0;right:50%;width:6px;height:6px;background:#00ff00;
+    border-radius:50%;animation:drop .4s ease-out forwards
   }
   @keyframes drop{
     0%{transform:translateY(-4px);opacity:.9}
     100%{transform:translateY(14px);opacity:0}
   }
 
-  /* radial wipe overlay */
+  /* radial wipe */
   #wipe{
+    display:none;                          /* invisível por padrão            */
     position:fixed;inset:0;background:var(--bg);pointer-events:none;z-index:850;
-    clip-path:circle(0 at var(--x) var(--y));transition:clip-path .6s ease
+    clip-path:circle(0 at 0 0);transition:clip-path .6s ease
   }
 
-  /* optional neon-pulse */
+  /* neon hover (opcional) */
   @keyframes neonPulse{
     0%,100%{box-shadow:0 0 0 #00ff00}
     50%    {box-shadow:0 0 10px 3px #00ff00}
@@ -129,7 +134,7 @@
   .switch-track:hover,
   .switch-track:focus-within{animation:neonPulse 1.3s ease-in-out infinite;}
 
-  /* ---------------- SEÇÕES ---------------- */
+  /* ---------- SEÇÕES GENÉRICAS ---------- */
   section{padding:var(--section-pad)}
   .container{max-width:var(--max);margin-inline:auto}
   .grid{display:grid;gap:2rem}
@@ -232,7 +237,7 @@
 <body>
 <div id="wipe"></div>
 
-<!-- ============ HEADER ============ -->
+<!-- HEADER -->
 <header>
   <nav>
     <a class="brand" href="#">NomeDaEmpresa</a>
@@ -245,7 +250,6 @@
     </ul>
 
     <div class="right-nav">
-      <!-- Lever -->
       <div class="theme-switch">
         <span id="switchText">Light</span>
         <input type="checkbox" id="themeToggle">
@@ -264,7 +268,7 @@
   </nav>
 </header>
 
-<!-- ============ HERO ============ -->
+<!-- HERO -->
 <section id="hero">
   <span class="badge">+20 anos de mercado</span>
   <h1>Soluções que impulsionam<br>o crescimento do seu negócio.</h1>
@@ -277,7 +281,7 @@
                  loop autoplay></lottie-player>
 </section>
 
-<!-- ============ SERVICES ============ -->
+<!-- SERVICES -->
 <section id="services">
   <div class="container reveal">
     <h2>Serviços</h2>
@@ -291,7 +295,7 @@
   </div>
 </section>
 
-<!-- ============ NUMBERS ============ -->
+<!-- NUMBERS -->
 <section id="numbers">
   <div class="container reveal">
     <h2>Nossos Números</h2>
@@ -304,7 +308,7 @@
   </div>
 </section>
 
-<!-- ============ CASES ============ -->
+<!-- CASES -->
 <section id="cases">
   <div class="container reveal">
     <h2>Cases de Sucesso</h2>
@@ -313,23 +317,16 @@
         <h4>Redesign de Plataforma</h4>
         <div class="ba"
              data-before="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
-             data-after ="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=800&q=80">
-        </div>
+             data-after ="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=800&q=80"></div>
         <span>UX • Taxa de conversão +54 %</span>
       </div>
-      <div class="case">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80" alt>
-        <h4>Projeto Indústria 4.0</h4><span>Indústria • ROI +37 %</span>
-      </div>
-      <div class="case">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1515169067865-5387ec356754?auto=format&fit=crop&w=600&q=80" alt>
-        <h4>Plataforma E-commerce</h4><span>Varejo • +140 k pedidos/mês</span>
-      </div>
+      <div class="case"><img loading="lazy" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80" alt><h4>Projeto Indústria 4.0</h4><span>Indústria • ROI +37 %</span></div>
+      <div class="case"><img loading="lazy" src="https://images.unsplash.com/photo-1515169067865-5387ec356754?auto=format&fit=crop&w=600&q=80" alt><h4>Plataforma E-commerce</h4><span>Varejo • +140 k pedidos/mês</span></div>
     </div>
   </div>
 </section>
 
-<!-- ============ TESTIMONIALS ============ -->
+<!-- TESTIMONIALS -->
 <section id="testimonials">
   <div class="container reveal">
     <h2>Depoimentos</h2>
@@ -340,7 +337,7 @@
   </div>
 </section>
 
-<!-- ============ FAQ ============ -->
+<!-- FAQ -->
 <section id="faq">
   <div class="container reveal">
     <h2>Perguntas Frequentes</h2>
@@ -350,19 +347,19 @@
   </div>
 </section>
 
-<!-- ============ BLOG ============ -->
+<!-- BLOG -->
 <section id="blog">
   <div class="container reveal">
     <h2>Insights &amp; Notícias</h2>
     <div class="grid">
-      <article class="post"><img loading="lazy" src="https://images.unsplash.com/photo-1485115905815-74a5c9fda2a4?auto=format&fit=crop&w=600&q=80" alt><div class="post-content"><h4>Como escolher o parceiro tecnológico ideal</h4><p>Checklist essencial para reduzir riscos e maximizar ROI em TI.</p><a href="#" class="read-more">Continuar lendo →</a></div></article>
-      <article class="post"><img loading="lazy" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt><div class="post-content"><h4>Tendências de automação para 2026</h4><p>O que esperar do mercado e como preparar sua empresa.</p><a href="#" class="read-more">Continuar lendo →</a></div></article>
-      <article class="post"><img loading="lazy" src="https://images.unsplash.com/photo-1581090464777-7534be94d2ab?auto=format&fit=crop&w=600&q=80" alt><div class="post-content"><h4>5 erros comuns em projetos de software</h4><p>E como evitá-los para garantir entregas no prazo e dentro do orçamento.</p><a href="#" class="read-more">Continuar lendo →</a></div></article>
+      <article class="post"><img loading="lazy" src="https://images.unsplash.com/photo-1485115905815-74a5c9fda2a4?auto=format&fit=crop&w=600&q=80"><div class="post-content"><h4>Como escolher o parceiro tecnológico ideal</h4><p>Checklist essencial para reduzir riscos e maximizar ROI em TI.</p><a href="#" class="read-more">Continuar lendo →</a></div></article>
+      <article class="post"><img loading="lazy" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80"><div class="post-content"><h4>Tendências de automação para 2026</h4><p>O que esperar do mercado e como preparar sua empresa.</p><a href="#" class="read-more">Continuar lendo →</a></div></article>
+      <article class="post"><img loading="lazy" src="https://images.unsplash.com/photo-1581090464777-7534be94d2ab?auto=format&fit=crop&w=600&q=80"><div class="post-content"><h4>5 erros comuns em projetos de software</h4><p>E como evitá-los para garantir entregas no prazo e dentro do orçamento.</p><a href="#" class="read-more">Continuar lendo →</a></div></article>
     </div>
   </div>
 </section>
 
-<!-- ============ CTA ============ -->
+<!-- CTA -->
 <section id="cta">
   <div class="container reveal" style="text-align:center">
     <h2>Pronto para transformar sua empresa?</h2>
@@ -371,7 +368,7 @@
   </div>
 </section>
 
-<!-- ============ CONTACT ============ -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="container reveal">
     <h2>Entre em Contato</h2>
@@ -385,15 +382,15 @@
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
+<!-- FOOTER -->
 <footer>
   © 2005-2025 NomeDaEmpresa. Todos os direitos reservados.<br>
   <a href="mailto:contato@nomedaempresa.com">contato@nomedaempresa.com</a> •
   <a href="https://wa.me/5500000000000" target="_blank">WhatsApp</a>
 </footer>
 
-<!-- botões permanentes -->
 <a class="wa-float" href="https://wa.me/5500000000000" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
 <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;color:#000;padding:1rem;text-align:center;box-shadow:0 -2px 6px rgba(0,0,0,.15);z-index:960">
   Utilizamos cookies para melhorar sua experiência. <button id="cookieOk" class="cta" style="padding:.4rem 1rem;font-size:.9rem">Aceitar</button>
 </div>
@@ -405,17 +402,17 @@
 
 <!-- SCRIPTS -->
 <script>
-/* ---------- burger ---------- */
+/* ----- burger ----- */
 const burger=document.getElementById('burger'), nav=document.getElementById('nav');
 burger.addEventListener('click',()=>nav.classList.toggle('open'));
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 
-/* ---------- dark-mode & FX ---------- */
+/* ----- dark-mode & FX ----- */
 const root=document.documentElement,
       themeToggle=document.getElementById('themeToggle'),
-      switchText=document.getElementById('switchText'),
-      track=document.querySelector('.switch-track'),
-      wipe=document.getElementById('wipe');
+      switchText =document.getElementById('switchText'),
+      track      =document.querySelector('.switch-track'),
+      wipe       =document.getElementById('wipe');
 
 function makeSparks(){
   for(let i=0;i<3;i++){
@@ -426,54 +423,65 @@ function makeSparks(){
   }
 }
 function radialWipe(x,y){
+  wipe.style.display='block';                                   // mostra
   wipe.style.setProperty('--x',`${x}px`); wipe.style.setProperty('--y',`${y}px`);
-  wipe.style.background=root.classList.contains('dark')?'#1a1a1a':'#fdfdfd';
+  wipe.style.background=root.classList.contains('dark') ? '#1a1a1a' : '#fdfdfd';
   wipe.style.clipPath='circle(0 at var(--x) var(--y))';
   requestAnimationFrame(()=>wipe.style.clipPath='circle(150vmax at var(--x) var(--y))');
-  setTimeout(()=>wipe.style.clipPath='circle(0 at var(--x) var(--y))',650);
+  setTimeout(()=>wipe.style.display='none',650);                // esconde após animação
 }
-function applyTheme(mode, user, pt){
+function applyTheme(mode,user,pt){
   if(mode==='dark'){
     root.classList.add('dark'); switchText.textContent='Dark';
     if(user){ track.classList.add('drop'); setTimeout(()=>track.classList.remove('drop'),400); }
-  }else{ root.classList.remove('dark'); switchText.textContent='Light'; }
-  themeToggle.checked=mode==='dark';
+  }else{
+    root.classList.remove('dark'); switchText.textContent='Light';
+  }
+  themeToggle.checked = mode==='dark';
   makeSparks();
-  if(pt){ radialWipe(pt.x,pt.y); }
-  if(mode==='dark' && !localStorage.darkCelebrated){ confetti({particleCount:120,spread:70,origin:{y:.1}}); localStorage.darkCelebrated=1; }
+  if(pt){ radialWipe(pt.x, pt.y); }
+  if(mode==='dark' && !localStorage.darkCelebrated){
+    confetti({particleCount:120, spread:70, origin:{y:.1}});
+    localStorage.darkCelebrated=1;
+  }
   localStorage.theme=mode;
 }
 applyTheme(localStorage.theme==='dark'?'dark':'light', false);
+
 track.addEventListener('click',e=>{
   const mode=themeToggle.checked?'dark':'light';
-  applyTheme(mode, true, {x:e.clientX,y:e.clientY});
+  applyTheme(mode, true, {x:e.clientX, y:e.clientY});
 });
 
-/* ---------- reveal ---------- */
+/* ----- reveal ----- */
 const revealObs=new IntersectionObserver(ent=>ent.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
 
-/* ---------- counters ---------- */
-function count(el){const t=+el.dataset.target,inc=Math.ceil(t/60);const upd=()=>{const cur=+el.textContent;if(cur<t){el.textContent=cur+inc;setTimeout(upd,30);}else{el.textContent=t;}};upd();}
-const numObs=new IntersectionObserver(e=>{if(e[0].isIntersecting){document.querySelectorAll('[data-target]').forEach(count);numObs.disconnect();}},{threshold:.3});
+/* ----- counters ----- */
+function count(el){const t=+el.dataset.target, inc=Math.ceil(t/60);
+  (function upd(){const cur=+el.textContent; if(cur<t){el.textContent=cur+inc; setTimeout(upd,30);} else{el.textContent=t;}})();}
+const numObs=new IntersectionObserver(e=>{if(e[0].isIntersecting){document.querySelectorAll('[data-target]').forEach(count);numObs.disconnect();}}, {threshold:.3});
 numObs.observe(document.getElementById('numbers'));
 
-/* ---------- cookie ---------- */
+/* ----- cookie banner ----- */
 const banner=document.getElementById('cookieBanner'), ok=document.getElementById('cookieOk');
 if(!localStorage.cookieOK){banner.style.display='block'; ok.onclick=()=>{localStorage.cookieOK=1; banner.remove();};}
 
-/* ---------- before/after ---------- */
+/* ----- before-after init ----- */
 window.addEventListener('DOMContentLoaded',()=>BeforeAfter.initialize());
 
-/* ---------- PWA ---------- */
+/* ----- PWA SW ----- */
 if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
 </script>
 
-<!-- schema -->
+<!-- schema org -->
 <script type="application/ld+json">
-{ "@context":"https://schema.org","@type":"Organization","name":"NomeDaEmpresa","url":"https://www.exemplo.com","logo":"https://www.exemplo.com/logo.png",
-  "sameAs":["https://www.instagram.com/nomedaempresa","https://www.linkedin.com/company/nomedaempresa"],
-  "contactPoint":[{ "@type":"ContactPoint","telephone":"+55-00-0000-0000","contactType":"customer service","areaServed":"BR","availableLanguage":["pt-BR","en"]}]}
+{
+ "@context":"https://schema.org","@type":"Organization","name":"NomeDaEmpresa",
+ "url":"https://www.exemplo.com","logo":"https://www.exemplo.com/logo.png",
+ "sameAs":["https://www.instagram.com/nomedaempresa","https://www.linkedin.com/company/nomedaempresa"],
+ "contactPoint":[{"@type":"ContactPoint","telephone":"+55-00-0000-0000",
+ "contactType":"customer service","areaServed":"BR","availableLanguage":["pt-BR","en"]}]}
 </script>
 </body>
 </html>
