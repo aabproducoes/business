@@ -1,275 +1,343 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Nome da Empresa — 20 anos impulsionando negócios</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Nome da Empresa — 20 anos impulsionando negócios</title>
 
-  <!-- Fontes & ícones -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Tipografia & Ícones -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- PWA & GA4 -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0077ff">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXX');  /*  ←  troque pelo seu ID GA4  */
-  </script>
+<!-- PWA & GA4 -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0077ff">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXX'); /* troque pelo seu ID GA4 */
+</script>
 
-  <!-- ESTILOS -->
-  <style>
-  :root{
-    --primary:#0077ff; --primary-light:#4799ff;
-    --bg:#fdfdfd;      --text:#1a1a1a; --muted:#666;
-    --pad:5rem 1.2rem; --max:1200px;   --rad:.75rem;
+<style>
+:root {
+  --primary: #0077ff;
+  --primary-light: #4799ff;
+  --bg: #fdfdfd;
+  --text: #1a1a1a;
+  --muted: #666;
+  --pad: 5rem 1.2rem;
+  --max: 1200px;
+  --rad: .75rem;
+}
+.dark {
+  --bg: #1a1a1a;
+  --text: #fdfdfd;
+  --muted: #aaa;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Inter, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+h1,h2,h3 { font-weight: 700; line-height: 1.25; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; border-radius: var(--rad); }
+
+/* ---------- NAV ---------- */
+header {
+  position: fixed; inset: 0 0 auto 0; height: 72px; z-index: 900;
+  background: rgba(255,255,255,.85); backdrop-filter: blur(8px);
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.dark header { background: rgba(20,20,20,.85); }
+nav {
+  max-width: var(--max); margin: 0 auto; height: 100%;
+  padding: 0 1rem; display: flex; align-items: center; justify-content: space-between;
+}
+.brand { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+ul.nav { list-style: none; display: flex; gap: 1.5rem; }
+ul.nav a { font-weight: 600; transition: color .2s; }
+ul.nav a:hover { color: var(--primary); }
+.burger {
+  display: none; font-size: 1.6rem; cursor: pointer; color: var(--text);
+}
+@media (max-width:768px) {
+  ul.nav {
+    position: fixed; inset: 72px 0 0 0; background: var(--bg);
+    flex-direction: column; gap: 1.2rem; transform: translateX(100%);
+    transition: .35s; padding: 2rem 1rem; z-index: 800;
   }
-  .dark{ --bg:#1a1a1a; --text:#fdfdfd; --muted:#aaa }
+  ul.nav.open { transform: translateX(0); }
+  .burger { display: block; }
+}
 
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Inter,sans-serif;line-height:1.6;background:var(--bg);color:var(--text)}
-  h1,h2,h3{font-weight:700;line-height:1.25}
-  a{color:inherit;text-decoration:none}
-  img{max-width:100%;border-radius:var(--rad)}
+/* ---------- SWITCH CLUSTER ---------- */
+#themeToggle {
+  position: absolute; clip: rect(0 0 0 0);
+}
+.switches {
+  display: flex; align-items: center; gap: .8rem;
+  font-size: .7rem; user-select: none;
+}
+#switchText {
+  font-weight: 600; color: var(--primary); margin-right: .4rem;
+}
+/* base track */
+.switch-track {
+  position: relative; width: 72px; height: 28px;
+  border: 2px solid #00ff00; border-radius: 28px;
+  background: var(--bg); cursor: pointer; display: inline-block;
+}
+.switch-track .circle {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 12px; height: 12px; border-radius: 50%;
+}
+.circle.light { left: 8px; background: #fff; }
+.circle.dark  { right: 8px; background: #000; }
+.switch-track .lever {
+  position: absolute; top: 2px; left: 2px;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--primary);
+  transition: transform .8s cubic-bezier(.34,1.56,.64,1);
+}
+/* move lever */
+#themeToggle:checked ~ .switches .switch-track .lever {
+  transform: translateX(44px);
+}
 
-  /* ---------- NAV ---------- */
-  header{position:fixed;inset:0 0 auto 0;height:72px;z-index:900;
-         background:rgba(255,255,255,.85);backdrop-filter:blur(8px);
-         box-shadow:0 1px 4px rgba(0,0,0,.06)}
-  .dark header{background:rgba(20,20,20,.85)}
-  nav{max-width:var(--max);margin:0 auto;height:100%;padding:0 1rem;
-      display:flex;align-items:center;justify-content:space-between}
-  .brand{font-size:1.2rem;font-weight:700;color:var(--primary)}
-  ul.nav{list-style:none;display:flex;gap:1.5rem}
-  ul.nav a{font-weight:600;transition:color .2s}
-  ul.nav a:hover{color:var(--primary)}
+/* 1 — Pulse border */
+@keyframes borderPulse {
+  0%   { box-shadow: 0 0 0 0 #00ff00aa; }
+  100% { box-shadow: 0 0 0 12px transparent; }
+}
+.pulseSwitch.pulse { animation: borderPulse .8s ease-out; }
 
-  .burger{display:none;font-size:1.6rem;cursor:pointer;color:var(--text)}
-  @media(max-width:768px){
-    ul.nav{position:fixed;inset:72px 0 0 0;background:var(--bg);
-           flex-direction:column;gap:1.2rem;transform:translateX(100%);
-           transition:.35s;padding:2rem 1rem;z-index:800}
-    ul.nav.open{transform:translateX(0)}
-    .burger{display:block}
-  }
+/* 2 — Spring overshoot */
+/* lever already uses cubic-bezier(.34,1.56,.64,1) */
 
-  /* ---------- SWITCHES (cluster) ---------- */
-  #themeToggle{position:absolute;clip:rect(0 0 0 0)}
-  .switches{display:flex;align-items:center;gap:.8rem;font-size:.7rem;user-select:none}
-  #switchText{margin-right:.4rem;font-weight:600;color:var(--primary)}
+/* 3 — Rotation */
+.rotateSwitch.rotate .lever {
+  animation: rotKey .8s forwards;
+}
+@keyframes rotKey {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(90deg); }
+  100% { transform: rotate(90deg) translateX(44px); }
+}
 
-  .switch-track{position:relative;width:72px;height:28px;border:2px solid #00ff00;
-                border-radius:28px;background:var(--bg);cursor:pointer;display:inline-block}
-  .switch-track .circle{position:absolute;top:50%;transform:translateY(-50%);
-                        width:12px;height:12px;border-radius:50%}
-  .circle.light{left:8px;background:#fff}
-  .circle.dark{right:8px;background:#000}
+/* 4 — Overlay Fade */
+#themeFade {
+  position: fixed; inset: 0; pointer-events: none; z-index: 999;
+  background: var(--bg); transform: translateX(-100%);
+  transition: transform 1.2s ease;
+}
 
-  .switch-track .lever{position:absolute;top:2px;left:2px;width:24px;height:24px;
-                       border-radius:50%;background:var(--primary);
-                       transition:transform .8s cubic-bezier(.34,1.56,.64,1)}
-  #themeToggle:checked ~ .switches .switch-track .lever{transform:translateX(44px)}
+/* 5 — Morph icon */
+.morphSwitch .lever {
+  display: flex; align-items: center; justify-content: center;
+  background: transparent;
+}
+.morphSwitch svg {
+  width: 24px; height: 24px; transition: transform .8s;
+}
+.morphSwitch path {
+  transition: d .8s ease, fill .8s;
+}
 
-  /* 1 — Pulse */
-  @keyframes borderPulse{0%{box-shadow:0 0 0 0 #00ff00aa}100%{box-shadow:0 0 0 12px transparent}}
-  .pulseSwitch.pulse{animation:borderPulse .8s ease-out}
-
-  /* 3 — Rotate */
-  .rotateSwitch.rotate .lever{animation:rotKey .8s forwards}
-  @keyframes rotKey{
-    0%{transform:rotate(0deg)}
-    50%{transform:rotate(90deg)}
-    100%{transform:rotate(90deg) translateX(44px)}
-  }
-
-  /* 4 — Overlay fade */
-  #themeFade{position:fixed;inset:0;pointer-events:none;z-index:999;
-             background:var(--bg);transform:translateX(-100%);
-             transition:transform 1.2s ease}
-
-  /* 5 — Morph ícone */
-  .morphSwitch .lever{display:flex;align-items:center;justify-content:center;background:transparent}
-  .morphSwitch svg{width:24px;height:24px;transition:transform .8s}
-  .morphSwitch path{transition:d .8s ease,fill .8s}
-  #themeToggle:checked ~ .switches .morphSwitch svg{transform:rotate(180deg)}
-
-  /* ---------- SEÇÕES (layout genérico) ---------- */
-  section{padding:var(--pad)}
-  .container{max-width:var(--max);margin-inline:auto}
-  .reveal{opacity:0;transform:translateY(40px);transition:all .7s ease}
-  .reveal.visible{opacity:1;transform:none}
-
-  /* (demais estilos de hero, serviços, etc. permanecem iguais — safra anterior) */
-  /* … (copiados da resposta anterior sem alterações) … */
-
-  </style>
+/* ---------- GENERIC LAYOUT ---------- */
+section { padding: var(--pad); }
+.container { max-width: var(--max); margin-inline: auto; }
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: all .7s ease;
+}
+.reveal.visible {
+  opacity: 1; transform: none;
+}
+/* … demais estilos das seções ficam como no exemplo anterior … */
+</style>
 </head>
 
 <body>
-<!-- Overlay de fade -->
-<div id="themeFade"></div>
+  <!-- Overlay Fade -->
+  <div id="themeFade"></div>
 
-<!-- Checkbox global de tema -->
-<input type="checkbox" id="themeToggle" />
+  <!-- Global toggle input -->
+  <input type="checkbox" id="themeToggle" />
 
-<header>
-  <nav>
-    <a class="brand" href="#">NomeDaEmpresa</a>
+  <header>
+    <nav>
+      <a class="brand" href="#">NomeDaEmpresa</a>
 
-    <ul class="nav" id="nav">
-      <li><a href="#hero">Home</a></li><li><a href="#services">Serviços</a></li>
-      <li><a href="#numbers">Números</a></li><li><a href="#cases">Cases</a></li>
-      <li><a href="#testimonials">Depoimentos</a></li><li><a href="#faq">FAQ</a></li>
-      <li><a href="#blog">Blog</a></li><li><a href="#contact">Contato</a></li>
-    </ul>
+      <ul class="nav" id="nav">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#services">Serviços</a></li>
+        <li><a href="#numbers">Números</a></li>
+        <li><a href="#cases">Cases</a></li>
+        <li><a href="#testimonials">Depoimentos</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contato</a></li>
+      </ul>
 
-    <!-- Cluster de 5 switches sincronizados -->
-    <div class="switches" id="switches">
-      <span id="switchText">Light</span>
+      <!-- Switch cluster -->
+      <div class="switches">
+        <span id="switchText">Light</span>
 
-      <!-- 1 — Pulse -->
-      <label for="themeToggle" class="switch-track pulseSwitch">
-        <span class="circle light"></span><span class="circle dark"></span><span class="lever"></span>
-      </label>
+        <!-- 1 — Pulse -->
+        <label for="themeToggle" class="switch-track pulseSwitch">
+          <span class="circle light"></span>
+          <span class="circle dark"></span>
+          <span class="lever"></span>
+        </label>
 
-      <!-- 2 — Overshoot (cubic-bezier) -->
-      <label for="themeToggle" class="switch-track springSwitch">
-        <span class="circle light"></span><span class="circle dark"></span><span class="lever"></span>
-      </label>
+        <!-- 2 — Spring / overshoot -->
+        <label for="themeToggle" class="switch-track springSwitch">
+          <span class="circle light"></span>
+          <span class="circle dark"></span>
+          <span class="lever"></span>
+        </label>
 
-      <!-- 3 — Rotate 90° -->
-      <label for="themeToggle" class="switch-track rotateSwitch">
-        <span class="circle light"></span><span class="circle dark"></span><span class="lever"></span>
-      </label>
+        <!-- 3 — Rotation -->
+        <label for="themeToggle" class="switch-track rotateSwitch">
+          <span class="circle light"></span>
+          <span class="circle dark"></span>
+          <span class="lever"></span>
+        </label>
 
-      <!-- 4 — Overlay fade -->
-      <label for="themeToggle" class="switch-track fadeSwitch">
-        <span class="circle light"></span><span class="circle dark"></span><span class="lever"></span>
-      </label>
+        <!-- 4 — Overlay fade -->
+        <label for="themeToggle" class="switch-track fadeSwitch">
+          <span class="circle light"></span>
+          <span class="circle dark"></span>
+          <span class="lever"></span>
+        </label>
 
-      <!-- 5 — Morph Sol↔Lua -->
-      <label for="themeToggle" class="switch-track morphSwitch">
-        <span class="circle light"></span><span class="circle dark"></span>
-        <span class="lever">
-          <svg viewBox="0 0 24 24" fill="#fff">
-            <path id="iconPath" d="M12 4a8 8 0 100 16 8 8 0 000-16z"/>
-          </svg>
-        </span>
-      </label>
+        <!-- 5 — Morph Sol↔Lua -->
+        <label for="themeToggle" class="switch-track morphSwitch">
+          <span class="circle light"></span>
+          <span class="circle dark"></span>
+          <span class="lever">
+            <svg viewBox="0 0 24 24" fill="#fff">
+              <path id="iconPath" d="M12 4a8 8 0 100 16 8 8 0 000-16z"/>
+            </svg>
+          </span>
+        </label>
 
-      <i class="fas fa-bars burger" id="burger"></i>
-    </div>
-  </nav>
-</header>
+        <i class="fas fa-bars burger" id="burger"></i>
+      </div>
+    </nav>
+  </header>
 
-<!-- ================================================================== -->
-<!--   RESTANTE DAS SEÇÕES (Hero, Serviços, Numbers, Cases, etc.)       -->
-<!--   → copie sem alterações da versão anterior (ou ajuste à vontade)  -->
-<!-- ================================================================== -->
+  <!-- … copie aqui as seções HERO, SERVICES, NUMBERS, CASES, TESTIMONIALS, FAQ, BLOG, CTA, CONTACT, FOOTER … -->
 
-<!-- … (seções omitidas aqui apenas para economizar espaço) … -->
+  <!-- Floating WhatsApp & Cookie Banner & external scripts -->
+  <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;
+       background:#fff;color:#000;padding:1rem;text-align:center;
+       box-shadow:0 -2px 6px rgba(0,0,0,.15);z-index:960">
+    Utilizamos cookies para melhorar sua experiência.
+    <button id="cookieOk" class="cta" style="padding:.4rem 1rem;font-size:.9rem">Aceitar</button>
+  </div>
+  <a class="wa-float" href="https://wa.me/5500000000000" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <script src="https://cdn.jsdelivr.net/npm/before-after.js@latest"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-<!-- Cookie banner, botão WhatsApp, etc. continuam iguais -->
+  <script>
+    /* Refs */
+    const root = document.documentElement,
+          nav = document.getElementById('nav'),
+          burger = document.getElementById('burger'),
+          themeToggle = document.getElementById('themeToggle'),
+          switchText = document.getElementById('switchText'),
+          pulse = document.querySelector('.pulseSwitch'),
+          rotate = document.querySelector('.rotateSwitch'),
+          fade = document.getElementById('themeFade'),
+          iconPath = document.getElementById('iconPath');
 
-<!-- ================= SCRIPTS ================= -->
-<script src="https://cdn.jsdelivr.net/npm/before-after.js@latest"></script>
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    /* NAV mobile */
+    burger?.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 
-<script>
-/* ------ refs ------ */
-const root=document.documentElement,
-      nav=document.getElementById('nav'),
-      burger=document.getElementById('burger'),
-      themeToggle=document.getElementById('themeToggle'),
-      switchText=document.getElementById('switchText'),
-      pulse=document.querySelector('.pulseSwitch'),
-      rotate=document.querySelector('.rotateSwitch'),
-      fade=document.getElementById('themeFade'),
-      iconPath=document.getElementById('iconPath');
+    /* Theme icons */
+    const sun  = "M12 4a8 8 0 100 16 8 8 0 000-16z",
+          moon = "M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z";
 
-/* ------ menu mobile ------ */
-burger?.addEventListener('click',()=>nav.classList.toggle('open'));
-nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+    function applyTheme(dark) {
+      if (dark) {
+        root.classList.add('dark');
+        switchText.textContent = 'Dark';
+        iconPath.setAttribute('d', moon);
+        iconPath.setAttribute('fill', '#ffd700');
+      } else {
+        root.classList.remove('dark');
+        switchText.textContent = 'Light';
+        iconPath.setAttribute('d', sun);
+        iconPath.setAttribute('fill', '#fff');
+      }
+    }
+    applyTheme(localStorage.theme === 'dark');
 
-/* ------ Tema ------ */
-const sun="M12 4a8 8 0 100 16 8 8 0 000-16z";
-const moon="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z";
+    function triggerAnimations(){
+      /* 1 — Pulse */
+      pulse.classList.add('pulse');
+      setTimeout(() => pulse.classList.remove('pulse'), 800);
 
-function applyTheme(dark){
-  if(dark){
-    root.classList.add('dark'); switchText.textContent='Dark';
-    iconPath.setAttribute('d',moon); iconPath.setAttribute('fill','#ffd700');
-  }else{
-    root.classList.remove('dark'); switchText.textContent='Light';
-    iconPath.setAttribute('d',sun); iconPath.setAttribute('fill','#fff');
-  }
-}
-applyTheme(localStorage.theme==='dark');
+      /* 3 — Rotate */
+      rotate.classList.add('rotate');
+      setTimeout(() => rotate.classList.remove('rotate'), 800);
 
-function triggerAnimations(){
-  /* Pulse */
-  pulse.classList.add('pulse'); setTimeout(()=>pulse.classList.remove('pulse'),800);
+      /* 4 — Overlay fade */
+      fade.style.transform = 'translateX(0)';
+      setTimeout(() => fade.style.transform = 'translateX(100%)', 10);
+      setTimeout(() => fade.style.transform = 'translateX(-100%)', 1210);
+    }
 
-  /* Rotate */
-  rotate.classList.add('rotate'); setTimeout(()=>rotate.classList.remove('rotate'),800);
+    themeToggle.addEventListener('change', () => {
+      const dark = themeToggle.checked;
+      localStorage.theme = dark ? 'dark' : 'light';
+      applyTheme(dark);
+      triggerAnimations();
+    });
 
-  /* Overlay cortina */
-  fade.style.transform='translateX(0)';
-  setTimeout(()=>fade.style.transform='translateX(100%)',10);
-  setTimeout(()=>fade.style.transform='translateX(-100%)',1210);
-}
+    /* Reveal & counters */
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+    }, { threshold: .15 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-themeToggle.addEventListener('change',()=>{
-  const dark=themeToggle.checked;
-  localStorage.theme=dark?'dark':'light';
-  applyTheme(dark);
-  triggerAnimations();
-});
+    function count(el){
+      const t = +el.dataset.target, inc = Math.ceil(t/60);
+      (function up(){
+        const c = +el.textContent;
+        if (c < t) {
+          el.textContent = c + inc;
+          setTimeout(up, 30);
+        } else {
+          el.textContent = t;
+        }
+      })();
+    }
+    const numObs = new IntersectionObserver(e => {
+      if (e[0].isIntersecting) {
+        document.querySelectorAll('[data-target]').forEach(count);
+        numObs.disconnect();
+      }
+    }, { threshold: .3 });
+    document.getElementById('numbers') && numObs.observe(document.getElementById('numbers'));
 
-/* ------ Reveal & counters (mesma lógica antiga) ------ */
-const revealObs=new IntersectionObserver(ent=>ent.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:.15});
-document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+    /* Cookie banner */
+    const banner = document.getElementById('cookieBanner'),
+          ok = document.getElementById('cookieOk');
+    if (banner && !localStorage.cookieOK) {
+      banner.style.display = 'block';
+      ok.onclick = () => { localStorage.cookieOK = 1; banner.remove(); };
+    }
 
-function count(el){const t=+el.dataset.target,inc=Math.ceil(t/60);
-  const up=()=>{const c=+el.textContent;if(c<t){el.textContent=c+inc;setTimeout(up,30)}else el.textContent=t};up();}
-const numObs=new IntersectionObserver(e=>{if(e[0].isIntersecting){
-  document.querySelectorAll('[data-target]').forEach(count);numObs.disconnect();}},{threshold:.3});
-document.getElementById('numbers')&&numObs.observe(document.getElementById('numbers'));
-
-/* ------ Cookie banner ------ */
-const banner=document.getElementById('cookieBanner'), ok=document.getElementById('cookieOk');
-if(banner&&!localStorage.cookieOK){ banner.style.display='block'; ok.onclick=()=>{localStorage.cookieOK=1; banner.remove();} }
-
-/* ------ Lib Before/After ------ */
-window.addEventListener('DOMContentLoaded',()=>BeforeAfter.initialize());
-
-/* ------ PWA SW ------ */
-if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
-</script>
-
-<!-- Schema.org JSON-LD (opcional) -->
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"Organization",
- "name":"NomeDaEmpresa",
- "url":"https://www.exemplo.com",
- "logo":"https://www.exemplo.com/logo.png",
- "sameAs":[
-   "https://www.instagram.com/nomedaempresa",
-   "https://www.linkedin.com/company/nomedaempresa"
- ],
- "contactPoint":[{
-   "@type":"ContactPoint",
-   "telephone":"+55-00-0000-0000",
-   "contactType":"customer service",
-   "areaServed":"BR",
-   "availableLanguage":["pt-BR","en"]
- }]
-}
-</script>
+    /* Before/After + SW */
+    window.addEventListener('DOMContentLoaded', () => BeforeAfter.initialize());
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
 </body>
 </html>
