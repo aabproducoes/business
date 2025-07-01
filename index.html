@@ -1,220 +1,237 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<title>Nome da Empresa — 20 anos impulsionando negócios</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Nome da Empresa — 20 anos impulsionando negócios</title>
 
-<!-- Tipografia & Ícones -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Tipografia & Ícones -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- PWA & GA4 -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0077ff">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXX'); /* troque pelo seu ID GA4 */
-</script>
+  <!-- PWA & GA4 -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0077ff">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');  /* <-- troque pelo seu ID GA4 */
+  </script>
 
-<style>
-:root {
-  --primary: #0077ff;
-  --primary-light: #4799ff;
-  --bg: #fdfdfd;
-  --text: #1a1a1a;
-  --muted: #666;
-  --pad: 5rem 1.2rem;
-  --max: 1200px;
-  --rad: .75rem;
-}
-.dark {
-  --bg: #1a1a1a;
-  --text: #fdfdfd;
-  --muted: #aaa;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Inter, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-h1,h2,h3 { font-weight: 700; line-height: 1.25; }
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; border-radius: var(--rad); }
-
-/* ---------- NAV ---------- */
-header {
-  position: fixed; inset: 0 0 auto 0; height: 72px; z-index: 900;
-  background: rgba(255,255,255,.85); backdrop-filter: blur(8px);
-  box-shadow: 0 1px 4px rgba(0,0,0,.06);
-}
-.dark header { background: rgba(20,20,20,.85); }
-nav {
-  max-width: var(--max); margin: 0 auto; height: 100%;
-  padding: 0 1rem; display: flex; align-items: center; justify-content: space-between;
-}
-.brand { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
-ul.nav { list-style: none; display: flex; gap: 1.5rem; }
-ul.nav a { font-weight: 600; transition: color .2s; }
-ul.nav a:hover { color: var(--primary); }
-.burger {
-  display: none; font-size: 1.6rem; cursor: pointer; color: var(--text);
-}
-@media (max-width:768px) {
-  ul.nav {
-    position: fixed; inset: 72px 0 0 0; background: var(--bg);
-    flex-direction: column; gap: 1.2rem; transform: translateX(100%);
-    transition: .35s; padding: 2rem 1rem; z-index: 800;
+  <style>
+  :root{
+    --primary:#0077ff; --primary-light:#4799ff;
+    --bg:#fdfdfd;      --text:#1a1a1a; --muted:#666;
+    --pad:5rem 1.2rem; --max:1200px;  --rad:.75rem;
   }
-  ul.nav.open { transform: translateX(0); }
-  .burger { display: block; }
-}
+  .dark{--bg:#1a1a1a;--text:#fdfdfd;--muted:#aaa}
 
-/* ---------- SWITCH CLUSTER ---------- */
-#themeToggle {
-  position: absolute; clip: rect(0 0 0 0);
-}
-.switches {
-  display: flex; align-items: center; gap: .8rem;
-  font-size: .7rem; user-select: none;
-}
-#switchText {
-  font-weight: 600; color: var(--primary); margin-right: .4rem;
-}
-/* base track */
-.switch-track {
-  position: relative; width: 72px; height: 28px;
-  border: 2px solid #00ff00; border-radius: 28px;
-  background: var(--bg); cursor: pointer; display: inline-block;
-}
-.switch-track .circle {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 12px; height: 12px; border-radius: 50%;
-}
-.circle.light { left: 8px; background: #fff; }
-.circle.dark  { right: 8px; background: #000; }
-.switch-track .lever {
-  position: absolute; top: 2px; left: 2px;
-  width: 24px; height: 24px; border-radius: 50%;
-  background: var(--primary);
-  transition: transform .8s cubic-bezier(.34,1.56,.64,1);
-}
-/* move lever */
-#themeToggle:checked ~ .switches .switch-track .lever {
-  transform: translateX(44px);
-}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Inter",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  h1,h2,h3{font-weight:700;line-height:1.25}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block;border-radius:var(--rad)}
 
-/* 1 — Pulse border */
-@keyframes borderPulse {
-  0%   { box-shadow: 0 0 0 0 #00ff00aa; }
-  100% { box-shadow: 0 0 0 12px transparent; }
-}
-.pulseSwitch.pulse { animation: borderPulse .8s ease-out; }
+  /* NAVBAR */
+  header{position:fixed;inset:0 0 auto 0;height:72px;z-index:900;
+         background:rgba(255,255,255,.85);backdrop-filter:blur(8px);
+         box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  .dark header{background:rgba(20,20,20,.85)}
+  nav{max-width:var(--max);margin:0 auto;height:100%;padding:0 1rem;
+      display:flex;align-items:center;justify-content:space-between}
+  .brand{font-size:1.2rem;font-weight:700;color:var(--primary)}
+  ul.nav{list-style:none;display:flex;gap:1.5rem}
+  ul.nav a{font-weight:600;transition:color .2s}
+  ul.nav a:hover{color:var(--primary)}
+  .burger{display:none;font-size:1.6rem;cursor:pointer;color:var(--text)}
+  @media(max-width:768px){
+    ul.nav{position:fixed;inset:72px 0 0 0;background:var(--bg);
+           flex-direction:column;gap:1.2rem;transform:translateX(100%);
+           transition:.35s;padding:2rem 1rem;z-index:800}
+    ul.nav.open{transform:translateX(0)}
+    .burger{display:block}
+  }
 
-/* 2 — Spring overshoot */
-/* lever already uses cubic-bezier(.34,1.56,.64,1) */
+  /* SWITCH CLUSTER */
+  #themeToggle{position:absolute;clip:rect(0 0 0 0);}
+  .switches{display:flex;align-items:center;gap:.8rem;font-size:.7rem;user-select:none}
+  #switchText{font-weight:600;color:var(--primary);margin-right:.4rem}
 
-/* 3 — Rotation */
-.rotateSwitch.rotate .lever {
-  animation: rotKey .8s forwards;
-}
-@keyframes rotKey {
-  0%   { transform: rotate(0deg); }
-  50%  { transform: rotate(90deg); }
-  100% { transform: rotate(90deg) translateX(44px); }
-}
+  .switch-track{position:relative;width:72px;height:28px;border:2px solid #00ff00;
+                border-radius:28px;background:var(--bg);cursor:pointer;display:inline-block}
+  .circle{position:absolute;top:50%;transform:translateY(-50%);width:12px;height:12px;border-radius:50%}
+  .circle.light{left:8px;background:#fff}
+  .circle.dark{right:8px;background:#000}
+  .lever{position:absolute;top:2px;left:2px;width:24px;height:24px;
+         border-radius:50%;background:var(--primary);
+         transition:transform .8s cubic-bezier(.34,1.56,.64,1)}
 
-/* 4 — Overlay Fade */
-#themeFade {
-  position: fixed; inset: 0; pointer-events: none; z-index: 999;
-  background: var(--bg); transform: translateX(-100%);
-  transition: transform 1.2s ease;
-}
+  #themeToggle:checked ~ .switches .lever{transform:translateX(44px)}
 
-/* 5 — Morph icon */
-.morphSwitch .lever {
-  display: flex; align-items: center; justify-content: center;
-  background: transparent;
-}
-.morphSwitch svg {
-  width: 24px; height: 24px; transition: transform .8s;
-}
-.morphSwitch path {
-  transition: d .8s ease, fill .8s;
-}
+  /* 1) Pulse border */
+  @keyframes borderPulse{0%{box-shadow:0 0 0 0 #00ff00aa}100%{box-shadow:0 0 0 12px transparent}}
+  .pulseSwitch.pulse{animation:borderPulse .8s ease-out}
 
-/* ---------- GENERIC LAYOUT ---------- */
-section { padding: var(--pad); }
-.container { max-width: var(--max); margin-inline: auto; }
-.reveal {
-  opacity: 0; transform: translateY(40px);
-  transition: all .7s ease;
-}
-.reveal.visible {
-  opacity: 1; transform: none;
-}
-/* … demais estilos das seções ficam como no exemplo anterior … */
-</style>
+  /* 2) Spring overshoot (via cubic-bezier já no .lever) */
+
+  /* 3) Rotation */
+  @keyframes rotKey{0%{transform:rotate(0deg)}50%{transform:rotate(90deg)}100%{transform:rotate(90deg) translateX(44px)}}
+  .rotateSwitch.rotate .lever{animation:rotKey .8s forwards}
+
+  /* 4) Overlay fade */
+  #themeFade{position:fixed;inset:0;pointer-events:none;z-index:999;
+             background:var(--bg);transform:translateX(-100%);
+             transition:transform 1.2s ease}
+
+  /* 5) Morph Sol⇄Lua */
+  .morphSwitch .lever{display:flex;align-items:center;justify-content:center;background:transparent}
+  .morphSwitch svg{width:24px;height:24px;transition:transform .8s}
+  .morphSwitch path{transition:d .8s ease,fill .8s}
+  /* d inicial e final definidos em JS */
+
+  /* SECTIONS GENERIC */
+  section{padding:var(--pad)}
+  .container{max-width:var(--max);margin-inline:auto}
+  .grid{display:grid;gap:2rem}
+  .reveal{opacity:0;transform:translateY(40px);transition:all .7s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* HERO */
+  #hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+        text-align:center;padding:0 1.2rem;
+        background:url('https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=1400&q=80')
+                   center/cover fixed}
+  #hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
+  #hero>*{position:relative;color:#fff}
+  .badge{background:var(--primary);padding:.4rem .8rem;border-radius:999px;font-size:.875rem;margin-bottom:1rem}
+  #hero h1{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:1rem}
+  #hero p{font-size:1.15rem;max-width:600px;margin-bottom:2rem}
+  .cta{display:inline-block;background:var(--primary);color:#fff;
+       padding:.9rem 1.8rem;border-radius:var(--rad);font-weight:600;
+       transition:background .25s}
+  .cta:hover{background:var(--primary-light)}
+
+  /* SERVICES */
+  #services .grid{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .card{background:var(--bg);padding:2rem;border-radius:var(--rad);
+        box-shadow:0 4px 12px rgba(0,0,0,.04);transition:transform .2s}
+  .dark .card{background:#111}
+  .card:hover{transform:translateY(-4px)}
+  .card h3{margin-bottom:.5rem}
+  .card p{color:var(--muted);font-size:.95rem}
+
+  /* NUMBERS */
+  #numbers{background:linear-gradient(135deg,#e9f3ff 0%,#fff 100%)}
+  .dark #numbers{background:#0e1a32}
+  .stats{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center}
+  .stat{flex:1 1 150px;text-align:center}
+  .stat h2{font-size:2.5rem;color:var(--primary)}
+  .stat span{color:var(--muted);font-weight:600}
+
+  /* CASES */
+  #cases .grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .case{display:flex;flex-direction:column;gap:1rem}
+  .case h4{font-size:1.1rem}
+  .case span{color:var(--muted);font-size:.9rem}
+
+  /* TESTIMONIALS */
+  #testimonials{background:#f5f7fa}.dark #testimonials{background:#181e28}
+  .quote{background:var(--bg);padding:2rem;border-radius:var(--rad);
+         box-shadow:0 4px 10px rgba(0,0,0,.05);display:flex;flex-direction:column;gap:1.2rem;
+         position:relative}
+  .dark .quote{background:#111}
+  .quote::before{content:"\f10d";font-family:"Font Awesome 6 Free";
+                  font-weight:900;font-size:2.5rem;color:var(--primary);
+                  position:absolute;top:-10px;left:20px;opacity:.15}
+  .quote img{width:64px;height:64px;border-radius:50%;object-fit:cover}
+  .client{display:flex;align-items:center;gap:1rem}
+
+  /* FAQ */
+  #faq details{background:var(--bg);border-radius:var(--rad);margin-bottom:1rem;
+               padding:1rem 1.2rem;box-shadow:0 3px 8px rgba(0,0,0,.04)}
+  .dark #faq details{background:#111}
+  summary{cursor:pointer;font-weight:600;list-style:none}
+  summary::marker{display:none}
+
+  /* BLOG */
+  #blog .grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .post{background:var(--bg);border-radius:var(--rad);overflow:hidden;
+        box-shadow:0 2px 8px rgba(0,0,0,.05);display:flex;flex-direction:column}
+  .dark .post{background:#111}
+  .post-content{padding:1.4rem;flex:1;display:flex;flex-direction:column}
+  .post h4{margin-bottom:.6rem}
+  .post p{color:var(--muted);font-size:.925rem;flex:1}
+  .read-more{margin-top:1rem;font-weight:600;color:var(--primary)}
+
+  /* FORM */
+  form{display:grid;gap:1rem;max-width:540px;margin-inline:auto}
+  input,textarea{width:100%;padding:.9rem 1.1rem;border:1px solid #ccc;
+                  border-radius:var(--rad);font:inherit}
+  textarea{resize:vertical;min-height:160px}
+
+  /* FOOTER */
+  footer{background:#0d1117;color:#c3c6d1;text-align:center;padding:2rem 1rem;font-size:.9rem}
+  footer a{color:var(--primary-light)}
+
+  /* WHATSAPP FLOAT */
+  .wa-float{position:fixed;bottom:20px;right:20px;z-index:950;
+            background:#25D366;color:#fff;width:56px;height:56px;
+            border-radius:50%;display:flex;align-items:center;justify-content:center;
+            box-shadow:0 4px 10px rgba(0,0,0,.25);font-size:28px}
+  </style>
 </head>
 
 <body>
   <!-- Overlay Fade -->
   <div id="themeFade"></div>
 
-  <!-- Global toggle input -->
+  <!-- Global Toggle Input -->
   <input type="checkbox" id="themeToggle" />
 
+  <!-- HEADER -->
   <header>
     <nav>
       <a class="brand" href="#">NomeDaEmpresa</a>
-
       <ul class="nav" id="nav">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#services">Serviços</a></li>
-        <li><a href="#numbers">Números</a></li>
-        <li><a href="#cases">Cases</a></li>
-        <li><a href="#testimonials">Depoimentos</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#contact">Contato</a></li>
+        <li><a href="#hero">Home</a></li><li><a href="#services">Serviços</a></li>
+        <li><a href="#numbers">Números</a></li><li><a href="#cases">Cases</a></li>
+        <li><a href="#testimonials">Depoimentos</a></li><li><a href="#faq">FAQ</a></li>
+        <li><a href="#blog">Blog</a></li><li><a href="#contact">Contato</a></li>
       </ul>
 
-      <!-- Switch cluster -->
-      <div class="switches">
+      <!-- Switch Cluster + Burger -->
+      <div class="switches" id="switches">
         <span id="switchText">Light</span>
 
-        <!-- 1 — Pulse -->
+        <!-- 1: Pulse -->
         <label for="themeToggle" class="switch-track pulseSwitch">
-          <span class="circle light"></span>
-          <span class="circle dark"></span>
+          <span class="circle light"></span><span class="circle dark"></span>
           <span class="lever"></span>
         </label>
 
-        <!-- 2 — Spring / overshoot -->
+        <!-- 2: Spring overshoot -->
         <label for="themeToggle" class="switch-track springSwitch">
-          <span class="circle light"></span>
-          <span class="circle dark"></span>
+          <span class="circle light"></span><span class="circle dark"></span>
           <span class="lever"></span>
         </label>
 
-        <!-- 3 — Rotation -->
+        <!-- 3: Rotation -->
         <label for="themeToggle" class="switch-track rotateSwitch">
-          <span class="circle light"></span>
-          <span class="circle dark"></span>
+          <span class="circle light"></span><span class="circle dark"></span>
           <span class="lever"></span>
         </label>
 
-        <!-- 4 — Overlay fade -->
+        <!-- 4: Overlay fade -->
         <label for="themeToggle" class="switch-track fadeSwitch">
-          <span class="circle light"></span>
-          <span class="circle dark"></span>
+          <span class="circle light"></span><span class="circle dark"></span>
           <span class="lever"></span>
         </label>
 
-        <!-- 5 — Morph Sol↔Lua -->
+        <!-- 5: Morph Sol⇄Lua -->
         <label for="themeToggle" class="switch-track morphSwitch">
-          <span class="circle light"></span>
-          <span class="circle dark"></span>
+          <span class="circle light"></span><span class="circle dark"></span>
           <span class="lever">
             <svg viewBox="0 0 24 24" fill="#fff">
               <path id="iconPath" d="M12 4a8 8 0 100 16 8 8 0 000-16z"/>
@@ -227,117 +244,285 @@ section { padding: var(--pad); }
     </nav>
   </header>
 
-  <!-- … copie aqui as seções HERO, SERVICES, NUMBERS, CASES, TESTIMONIALS, FAQ, BLOG, CTA, CONTACT, FOOTER … -->
+  <!-- HERO -->
+  <section id="hero">
+    <span class="badge">+20 anos de mercado</span>
+    <h1>Soluções que impulsionam<br>o crescimento do seu negócio.</h1>
+    <p>Unindo experiência, criatividade e tecnologia para resultados concretos.</p>
+    <a href="#contact" class="cta">Solicitar proposta</a>
+    <lottie-player src="https://lottie.host/4bb7cbb6-c2c1-4965-a2e6-6c621e91c71f/ehVQZWaaSF.json"
+                   background="transparent" speed="1"
+                   style="width:120px;height:120px;margin-top:40px"
+                   loop autoplay></lottie-player>
+  </section>
 
-  <!-- Floating WhatsApp & Cookie Banner & external scripts -->
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container reveal">
+      <h2>Serviços</h2>
+      <p class="subtitle">Do planejamento à execução, entregamos valor onde mais importa.</p>
+      <div class="grid">
+        <div class="card"><h3>Consultoria Estratégica</h3><p>Analisamos processos, identificamos oportunidades e traçamos um plano de ação claro.</p></div>
+        <div class="card"><h3>Implementação Tecnológica</h3><p>Integramos sistemas, automatizamos fluxos e garantimos escalabilidade.</p></div>
+        <div class="card"><h3>Suporte Contínuo</h3><p>Equipe dedicada 24/7 para manter suas operações estáveis e seguras.</p></div>
+        <div class="card"><h3>Treinamento & Capacitação</h3><p>Capacitamos seu time para extrair o máximo das soluções implantadas.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <section id="numbers">
+    <div class="container reveal">
+      <h2>Nossos Números</h2>
+      <div class="stats">
+        <div class="stat"><h2 data-target="20">0</h2><span>Anos de atuação</span></div>
+        <div class="stat"><h2 data-target="300">0</h2><span>Clientes atendidos</span></div>
+        <div class="stat"><h2 data-target="750">0</h2><span>Projetos entregues</span></div>
+        <div class="stat"><h2 data-target="97">0</h2><span>% satisfação</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section id="cases">
+    <div class="container reveal">
+      <h2>Cases de Sucesso</h2>
+      <div class="grid">
+        <div class="case">
+          <h4>Redesign de Plataforma</h4>
+          <div class="ba"
+               data-before="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+               data-after="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=800&q=80">
+          </div>
+          <span>UX • Taxa de conversão +54%</span>
+        </div>
+        <div class="case">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80" alt="Indústria 4.0">
+          <h4>Projeto Indústria 4.0</h4>
+          <span>Indústria • ROI +37%</span>
+        </div>
+        <div class="case">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1515169067865-5387ec356754?auto=format&fit=crop&w=600&q=80" alt="E-commerce">
+          <h4>Plataforma E-commerce</h4>
+          <span>Varejo • +140k pedidos/mês</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container reveal">
+      <h2>Depoimentos</h2>
+      <div class="grid">
+        <div class="quote">
+          <p>“Profissionais incríveis! Nosso projeto foi entregue antes do prazo e superou expectativas.”</p>
+          <div class="client">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=80&q=80" alt>
+            <div><strong>Ana Silva</strong><br><small>COO — Indústria XPTO</small></div>
+          </div>
+        </div>
+        <div class="quote">
+          <p>“A equipe foi essencial para escalar nosso e-commerce durante a Black Friday.”</p>
+          <div class="client">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=80&q=80" alt>
+            <div><strong>Lucas Pereira</strong><br><small>Head de TI — Varejão</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container reveal">
+      <h2>Perguntas Frequentes</h2>
+      <details><summary>Quanto tempo leva um projeto médio?</summary><p>Depende da complexidade, mas a média é de 8–12 semanas da concepção ao go-live.</p></details>
+      <details><summary>Atendem empresas fora do Brasil?</summary><p>Sim! Já entregamos projetos em 5 países da América Latina e Europa.</p></details>
+      <details><summary>Existe suporte após a entrega?</summary><p>Oferecemos planos 24/7 ou pacotes de horas conforme a necessidade.</p></details>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="container reveal">
+      <h2>Insights & Notícias</h2>
+      <div class="grid">
+        <article class="post">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1485115905815-74a5c9fda2a4?auto=format&fit=crop&w=600&q=80" alt>
+          <div class="post-content"><h4>Como escolher o parceiro tecnológico ideal</h4><p>Checklist essencial para reduzir riscos e maximizar ROI em TI.</p><a href="#" class="read-more">Continuar lendo →</a></div>
+        </article>
+        <article class="post">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt>
+          <div class="post-content"><h4>Tendências de automação para 2026</h4><p>O que esperar do mercado e como preparar sua empresa.</p><a href="#" class="read-more">Continuar lendo →</a></div>
+        </article>
+        <article class="post">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1581090464777-7534be94d2ab?auto=format&fit=crop&w=600&q=80" alt>
+          <div class="post-content"><h4>5 erros comuns em projetos de software</h4><p>E como evitá-los para garantir entregas no prazo e dentro do orçamento.</p><a href="#" class="read-more">Continuar lendo →</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container reveal" style="text-align:center">
+      <h2>Pronto para transformar sua empresa?</h2>
+      <p>Entre em contato hoje mesmo e descubra como podemos ajudar.</p>
+      <a href="#contact" class="cta">Falar com nosso time</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container reveal">
+      <h2>Entre em Contato</h2>
+      <form action="https://example.com/submit" method="POST">
+        <input type="text" name="name" placeholder="Nome*" required>
+        <input type="email" name="email" placeholder="E-mail*" required>
+        <input type="tel" name="phone" placeholder="Telefone (opcional)">
+        <textarea name="message" placeholder="Como podemos ajudar?" required></textarea>
+        <button type="submit" class="cta">Enviar mensagem</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2005-2025 NomeDaEmpresa. Todos os direitos reservados.<br>
+    <a href="mailto:contato@nomedaempresa.com">contato@nomedaempresa.com</a> •
+    <a href="https://wa.me/5500000000000" target="_blank">WhatsApp</a>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a class="wa-float" href="https://wa.me/5500000000000" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- COOKIE BANNER -->
   <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;
        background:#fff;color:#000;padding:1rem;text-align:center;
        box-shadow:0 -2px 6px rgba(0,0,0,.15);z-index:960">
     Utilizamos cookies para melhorar sua experiência.
     <button id="cookieOk" class="cta" style="padding:.4rem 1rem;font-size:.9rem">Aceitar</button>
   </div>
-  <a class="wa-float" href="https://wa.me/5500000000000" target="_blank" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+
+  <!-- EXTERNAL SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/before-after.js@latest"></script>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
+  <!-- INLINE SCRIPTS -->
   <script>
-    /* Refs */
-    const root = document.documentElement,
-          nav = document.getElementById('nav'),
-          burger = document.getElementById('burger'),
-          themeToggle = document.getElementById('themeToggle'),
-          switchText = document.getElementById('switchText'),
-          pulse = document.querySelector('.pulseSwitch'),
-          rotate = document.querySelector('.rotateSwitch'),
-          fade = document.getElementById('themeFade'),
-          iconPath = document.getElementById('iconPath');
+    /* NAV MOBILE */
+    const burger=document.getElementById('burger'),
+          nav=document.getElementById('nav');
+    burger?.addEventListener('click',()=>nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 
-    /* NAV mobile */
-    burger?.addEventListener('click', () => nav.classList.toggle('open'));
-    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+    /* THEME & ANIMATIONS */
+    const root=document.documentElement,
+          themeToggle=document.getElementById('themeToggle'),
+          switchText=document.getElementById('switchText'),
+          pulse=document.querySelector('.pulseSwitch'),
+          rotate=document.querySelector('.rotateSwitch'),
+          fadeBg=document.getElementById('themeFade'),
+          iconPath=document.getElementById('iconPath');
 
-    /* Theme icons */
-    const sun  = "M12 4a8 8 0 100 16 8 8 0 000-16z",
-          moon = "M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z";
+    const sun="M12 4a8 8 0 100 16 8 8 0 000-16z",
+          moon="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z";
 
-    function applyTheme(dark) {
-      if (dark) {
+    function applyTheme(isDark){
+      if(isDark){
         root.classList.add('dark');
-        switchText.textContent = 'Dark';
-        iconPath.setAttribute('d', moon);
-        iconPath.setAttribute('fill', '#ffd700');
+        switchText.textContent='Dark';
+        iconPath.setAttribute('d',moon);
+        iconPath.setAttribute('fill','#ffd700');
       } else {
         root.classList.remove('dark');
-        switchText.textContent = 'Light';
-        iconPath.setAttribute('d', sun);
-        iconPath.setAttribute('fill', '#fff');
+        switchText.textContent='Light';
+        iconPath.setAttribute('d',sun);
+        iconPath.setAttribute('fill','#fff');
       }
     }
-    applyTheme(localStorage.theme === 'dark');
+    applyTheme(localStorage.theme==='dark');
 
     function triggerAnimations(){
-      /* 1 — Pulse */
+      // Pulse
       pulse.classList.add('pulse');
-      setTimeout(() => pulse.classList.remove('pulse'), 800);
-
-      /* 3 — Rotate */
+      setTimeout(()=>pulse.classList.remove('pulse'),800);
+      // Rotate
       rotate.classList.add('rotate');
-      setTimeout(() => rotate.classList.remove('rotate'), 800);
-
-      /* 4 — Overlay fade */
-      fade.style.transform = 'translateX(0)';
-      setTimeout(() => fade.style.transform = 'translateX(100%)', 10);
-      setTimeout(() => fade.style.transform = 'translateX(-100%)', 1210);
+      setTimeout(()=>rotate.classList.remove('rotate'),800);
+      // Curtain
+      fadeBg.style.transform='translateX(0)';
+      setTimeout(()=>fadeBg.style.transform='translateX(100%)',10);
+      setTimeout(()=>fadeBg.style.transform='translateX(-100%)',1210);
     }
 
-    themeToggle.addEventListener('change', () => {
-      const dark = themeToggle.checked;
-      localStorage.theme = dark ? 'dark' : 'light';
+    themeToggle.addEventListener('change',()=>{
+      const dark=themeToggle.checked;
+      localStorage.theme=dark?'dark':'light';
       applyTheme(dark);
       triggerAnimations();
     });
 
-    /* Reveal & counters */
-    const revealObs = new IntersectionObserver(entries => {
-      entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
-    }, { threshold: .15 });
-    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+    /* REVEAL ON SCROLL */
+    const revealObs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+    },{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
 
+    /* COUNTERS */
     function count(el){
-      const t = +el.dataset.target, inc = Math.ceil(t/60);
-      (function up(){
-        const c = +el.textContent;
-        if (c < t) {
-          el.textContent = c + inc;
-          setTimeout(up, 30);
-        } else {
-          el.textContent = t;
-        }
-      })();
+      const target=+el.dataset.target, inc=Math.ceil(target/60);
+      const upd=()=>{
+        const cur=+el.textContent;
+        if(cur<target){ el.textContent=cur+inc; setTimeout(upd,30); }
+        else el.textContent=target;
+      };
+      upd();
     }
-    const numObs = new IntersectionObserver(e => {
-      if (e[0].isIntersecting) {
+    const numObs=new IntersectionObserver(entries=>{
+      if(entries[0].isIntersecting){
         document.querySelectorAll('[data-target]').forEach(count);
         numObs.disconnect();
       }
-    }, { threshold: .3 });
-    document.getElementById('numbers') && numObs.observe(document.getElementById('numbers'));
+    },{threshold:.3});
+    if(document.getElementById('numbers')) numObs.observe(document.getElementById('numbers'));
 
-    /* Cookie banner */
-    const banner = document.getElementById('cookieBanner'),
-          ok = document.getElementById('cookieOk');
-    if (banner && !localStorage.cookieOK) {
-      banner.style.display = 'block';
-      ok.onclick = () => { localStorage.cookieOK = 1; banner.remove(); };
+    /* COOKIE BANNER */
+    const banner=document.getElementById('cookieBanner'),
+          okBtn=document.getElementById('cookieOk');
+    if(banner && !localStorage.cookieOK){
+      banner.style.display='block';
+      okBtn.onclick=()=>{ localStorage.cookieOK=1; banner.remove(); };
     }
 
-    /* Before/After + SW */
-    window.addEventListener('DOMContentLoaded', () => BeforeAfter.initialize());
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js');
-    }
+    /* BEFORE/AFTER & SW */
+    window.addEventListener('DOMContentLoaded',()=>BeforeAfter.initialize());
+    if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+  </script>
+
+  <!-- SCHEMA.ORG JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"NomeDaEmpresa",
+    "url":"https://www.exemplo.com",
+    "logo":"https://www.exemplo.com/logo.png",
+    "sameAs":[
+      "https://www.instagram.com/nomedaempresa",
+      "https://www.linkedin.com/company/nomedaempresa"
+    ],
+    "contactPoint":[{
+      "@type":"ContactPoint",
+      "telephone":"+55-00-0000-0000",
+      "contactType":"customer service",
+      "areaServed":"BR",
+      "availableLanguage":["pt-BR","en"]
+    }]
+  }
   </script>
 </body>
 </html>
