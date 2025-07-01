@@ -2,93 +2,135 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title>Nome da Empresa — 20 anos impulsionando negócios</title>
 
+<!-- Tipografia & Ícones -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-rEVpCQDqTdvYy33YV08iEeyLELT+0wSr+fZaMoZ2TzJYj5MFjjxZ2INZ6pY5mtHkt50mXcIRY/OkNbbKrO5eqg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<!-- PWA: Manifest + Theme-color -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0077ff">
+
+<!-- GA4 (troque G-XXXXXXX pelo seu ID) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXX');
+</script>
+
+<!--  Estilos  -->
 <style>
 :root{
-  --primary:#0077ff;
-  --primary-light:#4799ff;
-  --bg:#fdfdfd;
-  --text:#1a1a1a;
-  --muted:#666;
-  --section-pad:5rem 1.2rem;
-  --max:1200px;
-  --rad:.75rem;
+  /* paleta light */
+  --primary:#0077ff; --primary-light:#4799ff;
+  --bg:#fdfdfd;      --text:#1a1a1a; --muted:#666;
+  --section-pad:5rem 1.2rem; --max:1200px; --rad:.75rem;
+}
+/* overrides dark-mode */
+.dark{
+  --bg:#1a1a1a; --text:#fdfdfd; --muted:#aaa;
+  background:var(--bg); color:var(--text);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"Inter",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+body{font-family:"Inter",sans-serif;line-height:1.6;background:var(--bg);color:var(--text)}
 h1,h2,h3{font-weight:700;line-height:1.25}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block;border-radius:var(--rad)}
-/* ---------------- NAV ---------------- */
-header{position:fixed;inset:0 0 auto 0;height:72px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);box-shadow:0 1px 4px rgba(0,0,0,.06);z-index:900}
-nav{max-width:var(--max);margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 1rem}
+/* ---------- NAV ---------- */
+header{position:fixed;inset:0 0 auto 0;height:72px;background:rgba(255,255,255,.85);
+       backdrop-filter:blur(8px);box-shadow:0 1px 4px rgba(0,0,0,.06);z-index:900}
+.dark header{background:rgba(20,20,20,.85)}
+nav{max-width:var(--max);margin:0 auto;height:100%;padding:0 1rem;
+    display:flex;align-items:center;justify-content:space-between}
 .brand{font-size:1.2rem;font-weight:700;color:var(--primary)}
 ul.nav{list-style:none;display:flex;gap:1.5rem}
 ul.nav a{font-weight:600;transition:color .2s}
 ul.nav a:hover{color:var(--primary)}
-.burger{display:none;cursor:pointer;font-size:1.5rem;color:var(--text)}
+.burger,.themeTg{display:none;cursor:pointer;font-size:1.5rem}
+.themeTg{color:var(--primary)}
 @media(max-width:768px){
-  ul.nav{position:fixed;inset:72px 0 0 0;background:#fff;flex-direction:column;transform:translateX(100%);transition:.35s;padding:2rem 1rem;gap:1.2rem}
+  ul.nav{position:fixed;inset:72px 0 0 0;background:var(--bg);
+         flex-direction:column;transform:translateX(100%);transition:.35s;
+         padding:2rem 1rem;gap:1.2rem;z-index:800}
   ul.nav.open{transform:translateX(0)}
-  .burger{display:block}
+  .burger{display:block;color:var(--text)}
 }
-/* --------------- GENERIC --------------- */
+/* ---------- COMUM ---------- */
 section{padding:var(--section-pad)}
 .container{max-width:var(--max);margin-inline:auto}
 .grid{display:grid;gap:2rem}
 .reveal{opacity:0;transform:translateY(40px);transition:all .7s ease}
 .reveal.visible{opacity:1;transform:none}
-/* --------------- HERO --------------- */
-#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 1.2rem;background:url('https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=1400&q=80') center/cover fixed}
+/* ---------- HERO ---------- */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;padding:0 1.2rem;
+      background:url('https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=1400&q=80') center/cover fixed}
 #hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
 #hero>*{position:relative;color:#fff}
 .badge{background:var(--primary);padding:.4rem .8rem;border-radius:999px;font-size:.875rem;margin-bottom:1rem}
 #hero h1{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:1rem}
 #hero p{font-size:1.15rem;max-width:600px;margin-bottom:2rem}
-.cta{display:inline-block;background:var(--primary);color:#fff;padding:.9rem 1.8rem;border-radius:var(--rad);font-weight:600;transition:background .25s}
+.cta{display:inline-block;background:var(--primary);color:#fff;padding:.9rem 1.8rem;
+     border-radius:var(--rad);font-weight:600;transition:background .25s}
 .cta:hover{background:var(--primary-light)}
-/* --------------- SERVICES --------------- */
+/* ---------- CARDS ---------- */
 #services .grid{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-.card{background:#fff;padding:2rem;border-radius:var(--rad);box-shadow:0 4px 12px rgba(0,0,0,.04);transition:transform .2s}
+.card{background:var(--bg);padding:2rem;border-radius:var(--rad);
+      box-shadow:0 4px 12px rgba(0,0,0,.04);transition:transform .2s}
+.dark .card{background:#111}
 .card:hover{transform:translateY(-4px)}
 .card h3{margin-bottom:.5rem}
 .card p{color:var(--muted);font-size:.95rem}
-/* --------------- NUMBERS --------------- */
+/* ---------- NUMBERS ---------- */
 #numbers{background:linear-gradient(135deg,#e9f3ff 0%,#fff 100%)}
+.dark #numbers{background:#0e1a32}
 .stats{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center}
 .stat{flex:1 1 150px;text-align:center}
 .stat h2{font-size:2.5rem;color:var(--primary)}
 .stat span{color:var(--muted);font-weight:600}
-/* --------------- CASES --------------- */
+/* ---------- CASES ---------- */
 #cases .grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
 .case{display:flex;flex-direction:column;gap:1rem}
 .case h4{font-size:1.1rem}
 .case span{color:var(--muted);font-size:.9rem}
-/* --------------- TESTIMONIALS --------------- */
-#testimonials{background:#f5f7fa}
-.quote{background:#fff;padding:2rem;border-radius:var(--rad);box-shadow:0 4px 10px rgba(0,0,0,.05);display:flex;flex-direction:column;gap:1.2rem;position:relative}
-.quote::before{content:"\f10d";font-family:"Font Awesome 6 Free";font-weight:900;font-size:2.5rem;color:var(--primary);position:absolute;top:-10px;left:20px;opacity:.15}
+/* ---------- TESTIMONIALS ---------- */
+#testimonials{background:#f5f7fa}.dark #testimonials{background:#181e28}
+.quote{background:var(--bg);padding:2rem;border-radius:var(--rad);
+       box-shadow:0 4px 10px rgba(0,0,0,.05);display:flex;flex-direction:column;gap:1.2rem;position:relative}
+.quote::before{content:"\f10d";font-family:"Font Awesome 6 Free";font-weight:900;font-size:2.5rem;
+               color:var(--primary);position:absolute;top:-10px;left:20px;opacity:.15}
 .quote img{width:64px;height:64px;border-radius:50%;object-fit:cover}
 .client{display:flex;align-items:center;gap:1rem}
-/* --------------- BLOG --------------- */
+/* ---------- FAQ ---------- */
+details{background:var(--bg);border-radius:var(--rad);margin-bottom:1rem;padding:1rem 1.2rem;
+        box-shadow:0 3px 8px rgba(0,0,0,.04)}
+.dark details{background:#111}
+summary{cursor:pointer;font-weight:600;list-style:none}
+summary::marker{display:none}
+/* ---------- BLOG ---------- */
 #blog .grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.post{background:#fff;border-radius:var(--rad);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05);display:flex;flex-direction:column}
+.post{background:var(--bg);border-radius:var(--rad);overflow:hidden;
+      box-shadow:0 2px 8px rgba(0,0,0,.05);display:flex;flex-direction:column}
 .post-content{padding:1.4rem;flex:1;display:flex;flex-direction:column}
 .post h4{margin-bottom:.6rem}
 .post p{color:var(--muted);font-size:.925rem;flex:1}
 .read-more{margin-top:1rem;font-weight:600;color:var(--primary)}
-/* --------------- CONTACT --------------- */
+/* ---------- FORM ---------- */
 form{display:grid;gap:1rem;max-width:540px;margin-inline:auto}
 input,textarea{width:100%;padding:.9rem 1.1rem;border:1px solid #ccc;border-radius:var(--rad);font:inherit}
 textarea{resize:vertical;min-height:160px}
-/* --------------- FOOTER --------------- */
+/* ---------- FOOTER ---------- */
 footer{background:#0d1117;color:#c3c6d1;text-align:center;padding:2rem 1rem;font-size:.9rem}
 footer a{color:var(--primary-light)}
+/* ---------- FLOAT WHATSAPP ---------- */
+.wa-float{position:fixed;bottom:20px;right:20px;z-index:950;
+          background:#25D366;color:#fff;width:56px;height:56px;
+          border-radius:50%;display:flex;align-items:center;justify-content:center;
+          box-shadow:0 4px 10px rgba(0,0,0,.25);font-size:28px}
 </style>
 </head>
 
@@ -96,6 +138,7 @@ footer a{color:var(--primary-light)}
 <header>
   <nav>
     <a class="brand" href="#">NomeDaEmpresa</a>
+    <button class="themeTg" id="themeTg" title="Alternar tema"><i class="fas fa-moon"></i></button>
     <i class="fas fa-bars burger" id="burger"></i>
     <ul class="nav" id="nav">
       <li><a href="#hero">Home</a></li>
@@ -103,6 +146,7 @@ footer a{color:var(--primary-light)}
       <li><a href="#numbers">Números</a></li>
       <li><a href="#cases">Cases</a></li>
       <li><a href="#testimonials">Depoimentos</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#blog">Blog</a></li>
       <li><a href="#contact">Contato</a></li>
     </ul>
@@ -115,6 +159,9 @@ footer a{color:var(--primary-light)}
   <h1>Soluções que impulsionam<br>o crescimento do seu negócio.</h1>
   <p>Unindo experiência, criatividade e tecnologia para resultados concretos.</p>
   <a href="#contact" class="cta">Solicitar proposta</a>
+  <!-- Lottie deco -->
+  <lottie-player src="https://lottie.host/4bb7cbb6-c2c1-4965-a2e6-6c621e91c71f/ehVQZWaaSF.json"
+                 background="transparent" speed="1" style="width:120px;height:120px;margin-top:40px" loop autoplay></lottie-player>
 </section>
 
 <!-- ---------------- SERVICES ---------------- -->
@@ -161,20 +208,23 @@ footer a{color:var(--primary-light)}
   <div class="container reveal">
     <h2>Cases de Sucesso</h2>
     <div class="grid">
+      <!-- Before / After slider (demonstrativo) -->
       <div class="case">
-        <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80" alt="Indústria 4.0">
+        <h4>Redesign de Plataforma</h4>
+        <div class="ba" data-before="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+                         data-after="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=800&q=80"></div>
+        <span>UX • Taxa de conversão +54 %</span>
+      </div>
+      <!-- demais cases -->
+      <div class="case">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80" alt="Indústria 4.0">
         <h4>Projeto Indústria 4.0</h4>
         <span>Indústria • ROI +37 %</span>
       </div>
       <div class="case">
-        <img src="https://images.unsplash.com/photo-1515169067865-5387ec356754?auto=format&fit=crop&w=600&q=80" alt="E-commerce">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1515169067865-5387ec356754?auto=format&fit=crop&w=600&q=80" alt="E-commerce">
         <h4>Plataforma E-commerce</h4>
         <span>Varejo • +140 k pedidos/mês</span>
-      </div>
-      <div class="case">
-        <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=600&q=80" alt="Telemedicina">
-        <h4>Sistema de Telemedicina</h4>
-        <span>Saúde • 200 mil atendimentos/ano</span>
       </div>
     </div>
   </div>
@@ -188,22 +238,34 @@ footer a{color:var(--primary-light)}
       <div class="quote">
         <p>“Profissionais incríveis! Nosso projeto foi entregue antes do prazo e superou expectativas.”</p>
         <div class="client">
-          <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=80&q=80" alt="Cliente 1">
-          <div>
-            <strong>Ana Silva</strong><br><small>COO — Indústria XPTO</small>
-          </div>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=80&q=80" alt>
+          <div><strong>Ana Silva</strong><br><small>COO — Indústria XPTO</small></div>
         </div>
       </div>
       <div class="quote">
         <p>“A equipe foi essencial para escalar nosso e-commerce durante a Black Friday.”</p>
         <div class="client">
-          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=80&q=80" alt="Cliente 2">
-          <div>
-            <strong>Lucas Pereira</strong><br><small>Head de TI — Varejão</small>
-          </div>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=80&q=80" alt>
+          <div><strong>Lucas Pereira</strong><br><small>Head de TI — Varejão</small></div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ---------------- FAQ ---------------- -->
+<section id="faq">
+  <div class="container reveal">
+    <h2>Perguntas Frequentes</h2>
+    <details><summary>Quanto tempo leva um projeto médio?</summary>
+      <p>Depende da complexidade, mas a média é de 8–12 semanas da concepção ao go-live.</p>
+    </details>
+    <details><summary>Atendem empresas fora do Brasil?</summary>
+      <p>Sim! Já entregamos projetos em 5 países da América Latina e Europa.</p>
+    </details>
+    <details><summary>Existe suporte após a entrega?</summary>
+      <p>Oferecemos planos 24/7 ou pacotes de horas conforme a necessidade.</p>
+    </details>
   </div>
 </section>
 
@@ -213,7 +275,7 @@ footer a{color:var(--primary-light)}
     <h2>Insights &amp; Notícias</h2>
     <div class="grid">
       <article class="post">
-        <img src="https://images.unsplash.com/photo-1485115905815-74a5c9fda2a4?auto=format&fit=crop&w=600&q=80" alt="Post 1">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1485115905815-74a5c9fda2a4?auto=format&fit=crop&w=600&q=80" alt>
         <div class="post-content">
           <h4>Como escolher o parceiro tecnológico ideal</h4>
           <p>Checklist essencial para reduzir riscos e maximizar ROI em TI.</p>
@@ -221,7 +283,7 @@ footer a{color:var(--primary-light)}
         </div>
       </article>
       <article class="post">
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Post 2">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt>
         <div class="post-content">
           <h4>Tendências de automação para 2026</h4>
           <p>O que esperar do mercado e como preparar sua empresa.</p>
@@ -229,7 +291,7 @@ footer a{color:var(--primary-light)}
         </div>
       </article>
       <article class="post">
-        <img src="https://images.unsplash.com/photo-1581090464777-7534be94d2ab?auto=format&fit=crop&w=600&q=80" alt="Post 3">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1581090464777-7534be94d2ab?auto=format&fit=crop&w=600&q=80" alt>
         <div class="post-content">
           <h4>5 erros comuns em projetos de software</h4>
           <p>E como evitá-los para garantir entregas no prazo e dentro do orçamento.</p>
@@ -269,44 +331,79 @@ footer a{color:var(--primary-light)}
   <a href="https://wa.me/5500000000000" target="_blank">WhatsApp</a>
 </footer>
 
+<!-- Floating WhatsApp -->
+<a class="wa-float" href="https://wa.me/5500000000000" target="_blank" aria-label="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Cookie / LGPD banner -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;
+     background:#fff;color:#000;padding:1rem;text-align:center;box-shadow:0 -2px 6px rgba(0,0,0,.15);z-index:960">
+  Utilizamos cookies para melhorar sua experiência. <button id="cookieOk" class="cta" style="padding:.4rem 1rem;font-size:.9rem">Aceitar</button>
+</div>
+
+<!-- Scripts externos -->
+<script src="https://cdn.jsdelivr.net/npm/before-after.js@latest"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
 <script>
-// ------------- NAV TOGGLE -------------
-const burger=document.getElementById('burger'),nav=document.getElementById('nav');
+// ---------- NAV & THEME ----------
+const burger=document.getElementById('burger'),nav=document.getElementById('nav'),
+      themeTg=document.getElementById('themeTg'),root=document.documentElement;
 burger.addEventListener('click',()=>nav.classList.toggle('open'));
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 
-// ------------- REVEAL ON SCROLL -------------
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting) e.target.classList.add('visible');
-  });
-},{threshold:.15});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+themeTg.onclick=()=>{
+  root.classList.toggle('dark');
+  localStorage.theme=root.classList.contains('dark')?'dark':'light';
+};
+if(localStorage.theme==='dark') root.classList.add('dark');
 
-// ------------- COUNTERS -------------
-const counters=document.querySelectorAll('[data-target]');
-const speed=60; // lower = faster
-function animateCounters(){
-  counters.forEach(c=>{
-    const update=()=>{
-      const target=+c.getAttribute('data-target');
-      let current=+c.innerText;
-      const inc=Math.ceil(target/speed);
-      if(current<target){
-        c.innerText=current+inc;
-        setTimeout(update,30);
-      }else{
-        c.innerText=target;
-      }
-    };
-    update();
-  });
+// ---------- REVEAL ----------
+const revealObs=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('visible');}
+}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+// ---------- COUNTERS ----------
+function count(el){const target=+el.dataset.target,inc=Math.ceil(target/60);
+  const upd=()=>{const cur=+el.innerText; if(cur<target){el.innerText=cur+inc; setTimeout(upd,30);}else{el.innerText=target;}};
+  upd();}
+const numObs=new IntersectionObserver(e=>{if(e[0].isIntersecting){
+  document.querySelectorAll('[data-target]').forEach(count); numObs.disconnect();}}, {threshold:.3});
+numObs.observe(document.getElementById('numbers'));
+
+// ---------- COOKIE BANNER ----------
+const banner=document.getElementById('cookieBanner'),ok=document.getElementById('cookieOk');
+if(!localStorage.cookieOK){banner.style.display='block'; ok.onclick=()=>{localStorage.cookieOK=1; banner.remove();};}
+
+// ---------- BEFORE/AFTER init ----------
+window.addEventListener('DOMContentLoaded',()=>BeforeAfter.initialize());
+
+// ---------- PWA: register SW ----------
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
+</script>
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"Organization",
+ "name":"NomeDaEmpresa",
+ "url":"https://www.exemplo.com",
+ "logo":"https://www.exemplo.com/logo.png",
+ "sameAs":[
+   "https://www.instagram.com/nomedaempresa",
+   "https://www.linkedin.com/company/nomedaempresa"
+ ],
+ "contactPoint":[{
+   "@type":"ContactPoint",
+   "telephone":"+55-00-0000-0000",
+   "contactType":"customer service",
+   "areaServed":"BR",
+   "availableLanguage":["pt-BR","en"]
+ }]
 }
-const numSection=document.getElementById('numbers');
-const numObs=new IntersectionObserver((e)=>{
-  if(e[0].isIntersecting){animateCounters();numObs.disconnect();}
-},{threshold:.3});
-numObs.observe(numSection);
 </script>
 </body>
 </html>
